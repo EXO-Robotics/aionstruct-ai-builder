@@ -286,7 +286,7 @@ h3 { margin-bottom: 1.1rem; font-family: Georgia, "Times New Roman", serif; font
 .finding-pass { border-left-color: var(--moss); }
 
 .visual-frame { position: relative; padding: clamp(.8rem, 1.5vw, 1.4rem); background: #d2ccc0; box-shadow: 24px 24px 0 rgba(18,21,20,.10); }
-.gallery-image { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: #e7e2d8; opacity: 1; transition: opacity 180ms ease; }
+.gallery-image { width: 100%; height: auto; background: #e7e2d8; opacity: 1; transition: opacity 180ms ease; }
 .gallery-image.is-switching { opacity: .08; }
 .visual-caption { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 1rem; color: #555954; font: 600 .67rem/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; }
 .gallery-controls { display: flex; flex: 0 0 auto; gap: .2rem; }
