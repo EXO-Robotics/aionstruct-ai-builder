@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -43,6 +44,14 @@ class PortableRuntimeTests(unittest.TestCase):
         self.assertEqual("block", decoded["cells"][0]["primary"]["classification"])
         self.assertEqual("air", decoded["cells"][1]["primary"]["classification"])
         self.assertEqual("void", decoded["cells"][2]["primary"]["classification"])
+
+    def test_blueprint_v1_reference_bytes_are_unchanged(self) -> None:
+        ir = expand(load_blueprint_json(BLUEPRINT))
+        data, _palette, _indices = encode_mcstructure(tuple(ir["size"]), ir["cells"])
+        self.assertEqual(
+            "6c40899aae4fba51e024f4d5c45879a2be74d4984cfa93d733ffd3234748721c",
+            hashlib.sha256(data).hexdigest(),
+        )
 
     def test_example_has_no_walkable_islands(self) -> None:
         ir = expand(load_blueprint_json(BLUEPRINT))

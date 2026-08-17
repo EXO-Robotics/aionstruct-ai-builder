@@ -1,7 +1,7 @@
 {
   "name": "aionstruct-ai-builder",
-  "version": "0.1.0",
-  "description": "Constraint-driven AI authoring, inspection, preview, and offline compilation of original Minecraft Bedrock structures.",
+  "version": "0.2.0",
+  "description": "Semantic AI planning, deterministic lowering, inspection, preview, and offline compilation of original Minecraft Bedrock structures.",
   "author": {
     "name": "EXO-Robotics",
     "url": "https://github.com/EXO-Robotics"
@@ -13,16 +13,16 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "AIONSTRUCT AI Builder",
-    "shortDescription": "Design and compile Bedrock structures offline.",
-    "longDescription": "A constraint-first structure studio for AI Minecraft development. Author strict JSON blueprints, inspect final voxel IR, prove traversal and fixture support, render engineering and light previews, then compile deterministic .mcstructure bytes without Minecraft Editor.",
+    "shortDescription": "Plan and compile Bedrock structures offline.",
+    "longDescription": "A constraint-first structure studio for AI Minecraft development. Author semantic Plan v1 components and dependencies, lower them to strict Blueprint v1, inspect final voxel IR, prove traversal and fixture support, render engineering and light previews, then compile deterministic .mcstructure bytes without Minecraft Editor.",
     "developerName": "EXO-Robotics",
     "websiteURL": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
     "category": "Developer Tools",
     "capabilities": ["Interactive", "Write"],
     "defaultPrompt": [
-      "Design an original Bedrock house and render its engineering board.",
+      "Design an original Bedrock house as a semantic Plan and render its engineering board.",
       "Audit this AIONSTRUCT blueprint for traversal and lighting defects.",
-      "Compile this validated blueprint to deterministic .mcstructure bytes."
+      "Compare two designs, then compile the validated Blueprint to deterministic .mcstructure bytes."
     ],
     "brandColor": "#B86B3D",
     "composerIcon": "./assets/icon.svg",

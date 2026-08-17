@@ -1,5 +1,7 @@
 # Blueprint format
 
+Blueprint v1 is the stable low-level operation language and remains a supported direct input. For new architecture, prefer semantic Plan v1 and inspect the lowered Blueprint; see [plan-format.md](plan-format.md).
+
 ## Contents
 
 1. Coordinates and identity

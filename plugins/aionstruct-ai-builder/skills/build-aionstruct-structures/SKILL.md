@@ -1,11 +1,11 @@
 ---
 name: build-aionstruct-structures
-description: Design, audit, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline. Use for AI Minecraft development involving houses, castles, ruins, dungeons, room programs, traversal, supported lighting, explicit-air versus void behavior, deterministic .mcstructure output, or pre-BDS structure review without Minecraft Editor.
+description: Plan, design, audit, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline. Use for AI Minecraft development involving semantic rooms and dependencies, houses, castles, ruins, dungeons, traversal, supported lighting, explicit-air versus void behavior, deterministic .mcstructure output, or pre-BDS structure review without Minecraft Editor.
 ---
 
 # Build AIONSTRUCT Structures
 
-Create architecture as constrained data, inspect the final voxels, and compile only after spatial quality passes. Keep static, BDS, client, gameplay, world-generation, and console evidence separate.
+Create architecture as constrained semantic data, lower it to the frozen Blueprint vocabulary, inspect the final voxels, and compile only after spatial quality passes. Keep static, BDS, client, gameplay, world-generation, and console evidence separate.
 
 ## Start safely
 
@@ -18,13 +18,13 @@ python3 <plugin-root>/scripts/bootstrap_project.py <new-project-directory>
 ```
 
 4. Run `python3 tools/aionstruct.py doctor` in the project. Install `requirements.txt` only when PNG previews are required and the dependency is missing.
-5. Read [workflow.md](references/workflow.md) before authoring. Read [blueprint-format.md](references/blueprint-format.md) when editing source or debugging validation. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level builds. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
+5. Read [workflow.md](references/workflow.md) before authoring. Use [plan-format.md](references/plan-format.md) for new semantic designs. Read [blueprint-format.md](references/blueprint-format.md) when inspecting lowered source or maintaining a legacy Blueprint. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level builds. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
 
 ## Authoring loop
 
 1. Freeze the envelope, datum, silhouette, room program, route widths, headroom, exits, anchors, apertures, lighting zones, palette budget, and exclusions in sidecar contracts.
-2. Draft a strict finite `.aionstruct.json` blueprint. Keep intended clearance as explicit `minecraft:air`; leave untouched terrain absent as void.
-3. Run `validate`, then `expand`. Inspect final IR rather than trusting operation comments.
+2. For a new build, draft a strict `.aionplan.json` with stable component IDs and explicit dependencies. Run `plan validate`, then `plan lower`. Keep intended clearance as explicit `minecraft:air`; leave untouched terrain absent as void.
+3. Validate the lowered `.blueprint.json`, then run `expand`. Inspect final IR rather than trusting component names or operation comments. Existing Blueprint v1 sources remain supported directly.
 4. Require every intended walkable cell and anchor to share the declared traversal component. Verify full-depth apertures, stair support/headroom/landings, and support-sensitive fixtures.
 5. Render core SVGs, the isometric engineering board, and the static lighting heatmap. Review massing and cutaways visually.
 6. Run the static quality contract. Fix failed gates in the source; do not weaken contracts to make a design pass.
@@ -38,11 +38,21 @@ python3 tools/aionstruct.py build path/to/structure.aionstruct.json \
   --contract path/to/structure.quality.json
 ```
 
+For a Plan source, lower it first:
+
+```bash
+python3 tools/aionstruct.py plan validate path/to/structure.aionplan.json
+python3 tools/aionstruct.py plan lower path/to/structure.aionplan.json
+python3 tools/aionstruct.py build build/structure.blueprint.json \
+  --contract path/to/structure.quality.json
+```
+
 ## AI collaboration rules
 
 - Treat model output as an architectural proposal, never as proof.
 - Require the model to return dimensions, room bounds, routes, apertures, anchors, palette roles, fixture coordinates/support, exclusions, and acceptance tests.
-- Translate proposals into the strict operation vocabulary; reject invented fields.
+- Translate proposals into supported Plan components and dependencies; reject invented fields. Use Blueprint operations directly only when Plan v1 cannot yet express the design.
+- Treat source-map output as traceability for lowering, not voxel or runtime proof.
 - Detect conflicts in final IR, especially windows versus doors, furniture versus routes, roofs versus upper rooms, and fixtures versus headroom.
 - Preserve source, contract, IR, preview, compile-receipt, and artifact hashes.
 

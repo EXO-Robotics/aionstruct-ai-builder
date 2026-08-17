@@ -16,8 +16,10 @@ The packaged starter is self-contained:
 aionstruct/
   examples/
   schemas/aionstruct.blueprint.v1.schema.json
+  schemas/aionstruct.plan.v1.schema.json
 tools/
   aionstruct.py
+  aionstruct_plan.py
   aionstruct_validate.py
   aionstruct_expand.py
   aionstruct_quality.py
@@ -36,6 +38,8 @@ Run from the project root:
 
 ```bash
 python3 tools/aionstruct.py doctor
+python3 tools/aionstruct.py plan validate aionstruct/examples/semantic_roadside_house.aionplan.json
+python3 tools/aionstruct.py plan lower aionstruct/examples/semantic_roadside_house.aionplan.json
 python3 tools/aionstruct.py validate aionstruct/examples/wayfarers_hearth_house.aionstruct.json
 python3 tools/aionstruct.py expand aionstruct/examples/wayfarers_hearth_house.aionstruct.json
 python3 tools/aionstruct.py preview aionstruct/examples/wayfarers_hearth_house.aionstruct.json \
@@ -45,9 +49,13 @@ python3 tools/aionstruct.py quality aionstruct/examples/wayfarers_hearth_house.a
 python3 tools/aionstruct.py compile aionstruct/examples/wayfarers_hearth_house.aionstruct.json
 python3 tools/aionstruct.py build aionstruct/examples/wayfarers_hearth_house.aionstruct.json \
   --contract aionstruct/examples/wayfarers_hearth_house.quality.json
+python3 tools/aionstruct.py materials build/semantic_roadside_house.blueprint.json
+python3 tools/aionstruct.py layers build/semantic_roadside_house.blueprint.json
+python3 tools/aionstruct.py fingerprint build/semantic_roadside_house.blueprint.json
+python3 tools/aionstruct.py diff left.blueprint.json right.blueprint.json
 ```
 
-`compile` writes deterministic `.mcstructure` bytes, reopens them through an independent NBT reader, compares the full volume, and writes a receipt. It does not contact Minecraft.
+`plan lower` writes an ordinary Blueprint v1 file and a hash-bound component-to-operation source map. `compile` writes deterministic `.mcstructure` bytes, reopens them through an independent NBT reader, compares the full volume, and writes a receipt. Neither command contacts Minecraft.
 
 ## Constraint contract
 
