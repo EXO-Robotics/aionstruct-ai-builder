@@ -1,0 +1,50 @@
+{
+  "schema": "aionstruct.quality_contract.v1",
+  "structure_id": "example:drafts/wayfarers_hearth_house",
+  "generation": 2,
+  "preserve": [
+    "external model concepts remain advisory until strict source and verification pass",
+    "finite AIONSTRUCT v1 output and frozen compiler authority",
+    "explicit air for intended clearance and void for untouched terrain",
+    "support-aware visible lighting with protected routes"
+  ],
+  "architectural_targets": {
+    "mass_hierarchy": ["road approach","projecting porch","main cross gable","lower service wing","east reading bay","roof-piercing chimney"],
+    "minimum_facade_depth_layers": 3,
+    "maximum_repeated_bay_run": 6,
+    "minimum_distinct_room_identities": 12,
+    "required_preview_views": ["top_down","all_floors","four_elevations","isometric_exterior","ground_cutaway","upper_cutaway","lighting_heatmap"],
+    "room_quality": "Every room has an entrance, focal point, circulation anchor, furnishing intent, and final-IR usable-floor minimum."
+  },
+  "lighting": {
+    "default_zone": "service_safe",
+    "minimum_floor_block_light": 8,
+    "required_walkable_coverage": 1.0,
+    "emission_by_block": {"minecraft:lantern": 15},
+    "strategy": "Visible supported standing lanterns on route edges, furniture, and masonry plinths; public and upper cells target optimistic 10, service cells optimistic 8; no concealed sources."
+  },
+  "materials": {
+    "primary_structure_blocks": ["minecraft:stonebrick"],
+    "ratio_excluded_blocks": ["minecraft:air","minecraft:water"],
+    "maximum_primary_ratio": 0.55,
+    "minimum_distinct_blocks": 13,
+    "strategy": "Stone foundations and ground shell support a timber upper rhythm, brick cross-gables, glazed apertures, and room-specific furnishings."
+  },
+  "traversal": {
+    "start_anchor": "approach",
+    "headroom": 3,
+    "max_step": 1,
+    "required_anchors": ["approach","porch","vestibule","hearth","dining","kitchen","pantry","workshop","rear_exit","west_return","stair_bottom","upper_landing","gallery","bedroom","study"],
+    "strategy": "Prove a three-wide public spine, two-wide service and secondary-exit routes, and a broad full-block stair to the gallery, bedroom, and study."
+  },
+  "previews": {
+    "directory": "reports/previews/wayfarers_hearth_house/core",
+    "required_artifacts": ["metrics.json","top_down.svg","floors.svg","silhouettes.svg"],
+    "require_source_bound_manifest": true
+  },
+  "client_review": {
+    "required": true,
+    "conditions": ["day","night","rain"],
+    "record": ["roof hierarchy","porch depth","service-wing readability","room identity","route clarity","dark corners","fixture glare"]
+  }
+}

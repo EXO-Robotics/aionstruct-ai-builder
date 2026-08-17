@@ -1,0 +1,20 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r plugins/aionstruct-ai-builder/assets/starter-project/requirements.txt
+      - run: python plugins/aionstruct-ai-builder/scripts/self_test.py
+      - run: python plugins/aionstruct-ai-builder/scripts/package_plugin.py --output /tmp/aionstruct-ai-builder.zip

@@ -1,0 +1,2903 @@
+{
+  "anchors": {
+    "approach": [
+      13,
+      4,
+      1
+    ],
+    "bedroom": [
+      11,
+      8,
+      10
+    ],
+    "dining": [
+      19,
+      4,
+      16
+    ],
+    "gallery": [
+      17,
+      8,
+      15
+    ],
+    "hearth": [
+      13,
+      4,
+      14
+    ],
+    "kitchen": [
+      16,
+      4,
+      23
+    ],
+    "pantry": [
+      5,
+      4,
+      25
+    ],
+    "porch": [
+      13,
+      4,
+      6
+    ],
+    "rear_exit": [
+      8,
+      4,
+      30
+    ],
+    "stair_bottom": [
+      9,
+      4,
+      18
+    ],
+    "study": [
+      24,
+      8,
+      12
+    ],
+    "upper_landing": [
+      14,
+      8,
+      20
+    ],
+    "vestibule": [
+      13,
+      4,
+      10
+    ],
+    "west_return": [
+      2,
+      4,
+      19
+    ],
+    "workshop": [
+      11,
+      4,
+      25
+    ]
+  },
+  "connectors": [
+    {
+      "face": "south",
+      "height": 3,
+      "id": "south_road",
+      "origin_local": [
+        10,
+        4,
+        0
+      ],
+      "type": "house_entry",
+      "width": 7
+    },
+    {
+      "face": "north",
+      "height": 3,
+      "id": "rear_service",
+      "origin_local": [
+        7,
+        4,
+        31
+      ],
+      "type": "service_exit",
+      "width": 2
+    },
+    {
+      "face": "west",
+      "height": 3,
+      "id": "west_return",
+      "origin_local": [
+        0,
+        4,
+        18
+      ],
+      "type": "exterior_return",
+      "width": 3
+    }
+  ],
+  "id": "example:drafts/wayfarers_hearth_house",
+  "meta": {
+    "biome": "unassigned",
+    "block_entities_forbidden": true,
+    "dialect": "fantasy_roadside_timber_stone",
+    "discovery": "projecting porch, cross-gabled timber house, west chimney, rear craft wing, and east reading bay",
+    "entities_forbidden": true,
+    "ground_level": 4,
+    "max_occupied_blocks": 35000,
+    "max_palette": 24,
+    "notes": "Original non-shipping AIONSTRUCT reference design. Static evidence only. Lighting planner emitted 22 visible supported lanterns; no concealed sources.",
+    "product_type": "landmark",
+    "scatter_denominator": 1048576,
+    "vertical_band": "prototype"
+  },
+  "mirror_policy": "mirror_none",
+  "ops": [
+    {
+      "block": "cobble",
+      "comment": "main house secondary-masonry foundation",
+      "from": [
+        5,
+        1,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        2,
+        22
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "rear service foundation",
+      "from": [
+        2,
+        1,
+        22
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        2,
+        29
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "kitchen bump foundation",
+      "from": [
+        14,
+        1,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        2,
+        25
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "east reading-bay foundation",
+      "from": [
+        23,
+        1,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        2,
+        16
+      ]
+    },
+    {
+      "block": "gravel",
+      "comment": "south road approach",
+      "from": [
+        10,
+        3,
+        0
+      ],
+      "op": "cuboid",
+      "to": [
+        16,
+        3,
+        3
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "sheltered projecting porch deck",
+      "from": [
+        7,
+        3,
+        4
+      ],
+      "op": "cuboid",
+      "to": [
+        20,
+        3,
+        7
+      ]
+    },
+    {
+      "block": "gravel",
+      "comment": "rear service apron",
+      "from": [
+        5,
+        3,
+        30
+      ],
+      "op": "cuboid",
+      "to": [
+        10,
+        3,
+        31
+      ]
+    },
+    {
+      "block": "gravel",
+      "comment": "west exterior return path",
+      "from": [
+        0,
+        3,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        4,
+        3,
+        20
+      ]
+    },
+    {
+      "block": "stone_floor",
+      "comment": "main ground floor",
+      "from": [
+        5,
+        3,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        3,
+        22
+      ]
+    },
+    {
+      "block": "stone_floor",
+      "comment": "service ground floor",
+      "from": [
+        2,
+        3,
+        22
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        3,
+        29
+      ]
+    },
+    {
+      "block": "brick",
+      "comment": "kitchen floor and hearthwork",
+      "from": [
+        14,
+        3,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        3,
+        25
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "reading-bay floor",
+      "from": [
+        23,
+        3,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        3,
+        16
+      ]
+    },
+    {
+      "block": "stone_default",
+      "comment": "main house stone and timber mass",
+      "from": [
+        5,
+        3,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        22
+      ]
+    },
+    {
+      "block": "stone_mossy",
+      "comment": "weathered rear service wing mass",
+      "from": [
+        2,
+        3,
+        22
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        9,
+        29
+      ]
+    },
+    {
+      "block": "stone_default",
+      "comment": "kitchen projection mass",
+      "from": [
+        14,
+        3,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        9,
+        25
+      ]
+    },
+    {
+      "block": "stone_default",
+      "comment": "east reading-bay projection",
+      "from": [
+        23,
+        3,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        11,
+        16
+      ]
+    },
+    {
+      "block": "brick",
+      "comment": "roof-piercing west chimney mass",
+      "from": [
+        3,
+        3,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        6,
+        21,
+        16
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "main ground room volume",
+      "from": [
+        7,
+        4,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        6,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "pantry workshop and rear hall volume",
+      "from": [
+        3,
+        4,
+        23
+      ],
+      "op": "cuboid",
+      "to": [
+        13,
+        6,
+        28
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "kitchen volume",
+      "from": [
+        14,
+        4,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        20,
+        6,
+        24
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "reading-bay ground reveal",
+      "from": [
+        23,
+        4,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        24,
+        6,
+        15
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "approach and porch player clearance",
+      "from": [
+        10,
+        4,
+        0
+      ],
+      "op": "cuboid",
+      "to": [
+        16,
+        6,
+        7
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "rear apron clearance",
+      "from": [
+        5,
+        4,
+        30
+      ],
+      "op": "cuboid",
+      "to": [
+        10,
+        6,
+        31
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "west return clearance",
+      "from": [
+        0,
+        4,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        4,
+        6,
+        20
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "timber upper floor",
+      "from": [
+        6,
+        7,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        7,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "upper residential volume",
+      "from": [
+        6,
+        8,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        10,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "double-height hearth opening",
+      "from": [
+        10,
+        7,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        15,
+        10,
+        16
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "projecting reading-bay upper floor",
+      "from": [
+        23,
+        7,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        7,
+        16
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "study reading-bay volume",
+      "from": [
+        23,
+        8,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        10,
+        16
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "west loft route floor",
+      "from": [
+        7,
+        7,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        7,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "west loft route clearance",
+      "from": [
+        7,
+        8,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        10,
+        21
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "upper gallery floor",
+      "from": [
+        16,
+        7,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        18,
+        7,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "upper gallery clearance",
+      "from": [
+        16,
+        8,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        18,
+        10,
+        21
+      ]
+    },
+    {
+      "block": "stone_cracked",
+      "comment": "vestibule compression wall",
+      "from": [
+        7,
+        4,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        16,
+        6,
+        11
+      ]
+    },
+    {
+      "block": "stone_cracked",
+      "comment": "dining butler partition",
+      "from": [
+        17,
+        4,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        6,
+        18
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "pantry workshop divider",
+      "from": [
+        8,
+        4,
+        23
+      ],
+      "op": "cuboid",
+      "to": [
+        8,
+        6,
+        27
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "service kitchen frame",
+      "from": [
+        14,
+        4,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        6,
+        25
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "south timber string course",
+      "from": [
+        5,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "south eave beam",
+      "from": [
+        5,
+        11,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "south structural timber bays",
+      "from": [
+        5,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        11,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        11,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        16,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        16,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "east structural timber bays",
+      "from": [
+        22,
+        7,
+        10
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        10
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        7,
+        16
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        16
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        7,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        21
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "porch west projection post",
+      "from": [
+        4,
+        3,
+        4
+      ],
+      "op": "cuboid",
+      "to": [
+        4,
+        8,
+        4
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "porch east projection post",
+      "from": [
+        21,
+        3,
+        4
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        8,
+        4
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "porch front beam",
+      "from": [
+        4,
+        8,
+        4
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        8,
+        4
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "porch west wall post",
+      "from": [
+        4,
+        3,
+        7
+      ],
+      "op": "cuboid",
+      "to": [
+        4,
+        8,
+        7
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "porch east wall post",
+      "from": [
+        21,
+        3,
+        7
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        8,
+        7
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "porch vestibule and hearth entry prism",
+      "from": [
+        11,
+        4,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        13,
+        6,
+        12
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "hearth kitchen connection",
+      "from": [
+        14,
+        4,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        16,
+        6,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "dining butler kitchen connection",
+      "from": [
+        18,
+        4,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        20,
+        6,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "dining reading-bay full-depth opening",
+      "from": [
+        21,
+        4,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        24,
+        6,
+        14
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "kitchen workshop connection",
+      "from": [
+        13,
+        4,
+        23
+      ],
+      "op": "cuboid",
+      "to": [
+        15,
+        6,
+        24
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "workshop pantry connection",
+      "from": [
+        7,
+        4,
+        24
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        6,
+        25
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "workshop rear hall and exit prism",
+      "from": [
+        7,
+        4,
+        27
+      ],
+      "op": "cuboid",
+      "to": [
+        12,
+        6,
+        29
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "west return full-depth side-door prism",
+      "from": [
+        0,
+        4,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        7,
+        6,
+        20
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "upper bedroom entry prism",
+      "from": [
+        7,
+        8,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        10,
+        13
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "gallery study entry prism",
+      "from": [
+        18,
+        8,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        23,
+        10,
+        15
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "vestibule west recessed window",
+      "from": [
+        7,
+        5,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        8,
+        6,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "vestibule west recessed window timber frame",
+      "from": [
+        6,
+        4,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        9,
+        4,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        6,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "vestibule east recessed window",
+      "from": [
+        15,
+        5,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        16,
+        6,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "vestibule east recessed window timber frame",
+      "from": [
+        14,
+        4,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        17,
+        4,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        17,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        14,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        17,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "bedroom recessed window",
+      "from": [
+        8,
+        9,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        10,
+        10,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "bedroom recessed window timber frame",
+      "from": [
+        7,
+        8,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        7,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        11,
+        8,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        11,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        7,
+        11,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        11,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "loft recessed window",
+      "from": [
+        15,
+        9,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        17,
+        10,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "loft recessed window timber frame",
+      "from": [
+        14,
+        8,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        18,
+        8,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        18,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        14,
+        11,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        18,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "reading-bay ground focal window",
+      "from": [
+        25,
+        5,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        6,
+        14
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "reading-bay ground focal window timber frame",
+      "from": [
+        25,
+        4,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        7,
+        12
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        25,
+        4,
+        15
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        7,
+        15
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        25,
+        7,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        7,
+        15
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "kitchen east recessed window",
+      "from": [
+        22,
+        5,
+        21
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        6,
+        21
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "kitchen east recessed window timber frame",
+      "from": [
+        22,
+        4,
+        20
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        7,
+        20
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        4,
+        22
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        7,
+        22
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        7,
+        20
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        7,
+        22
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "gallery east recessed window",
+      "from": [
+        22,
+        9,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        10,
+        18
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "gallery east recessed window timber frame",
+      "from": [
+        22,
+        8,
+        16
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        16
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        8,
+        19
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        19
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        22,
+        11,
+        16
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        11,
+        19
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "reading-bay focal window",
+      "from": [
+        25,
+        9,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        10,
+        14
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "reading-bay focal window timber frame",
+      "from": [
+        25,
+        8,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        11,
+        11
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        25,
+        8,
+        15
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        11,
+        15
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        25,
+        11,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        11,
+        15
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "west ground recessed window",
+      "from": [
+        5,
+        5,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        6,
+        10
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "west ground recessed window timber frame",
+      "from": [
+        5,
+        4,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        5,
+        4,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        7,
+        11
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        5,
+        7,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        7,
+        11
+      ]
+    },
+    {
+      "block": "glass",
+      "comment": "bedroom west recessed window",
+      "from": [
+        5,
+        9,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        10,
+        10
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "bedroom west recessed window timber frame",
+      "from": [
+        5,
+        8,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        11,
+        8
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        5,
+        8,
+        11
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        11,
+        11
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        5,
+        11,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        11,
+        11
+      ]
+    },
+    {
+      "block": "iron_bars",
+      "comment": "pantry north barred window",
+      "from": [
+        3,
+        5,
+        29
+      ],
+      "op": "cuboid",
+      "to": [
+        4,
+        6,
+        29
+      ]
+    },
+    {
+      "block": "dark_log",
+      "comment": "pantry north barred window timber frame",
+      "from": [
+        2,
+        4,
+        29
+      ],
+      "op": "cuboid",
+      "to": [
+        2,
+        7,
+        29
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        5,
+        4,
+        29
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        7,
+        29
+      ]
+    },
+    {
+      "block": "dark_log",
+      "from": [
+        2,
+        7,
+        29
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        7,
+        29
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "visible main stair three-high clearance",
+      "from": [
+        10,
+        5,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        10,
+        7,
+        19
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "visible main stair three-wide full-block treads",
+      "from": [
+        10,
+        4,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        10,
+        4,
+        19
+      ]
+    },
+    {
+      "block": "air",
+      "from": [
+        11,
+        6,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        11,
+        8,
+        19
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "from": [
+        11,
+        5,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        11,
+        5,
+        19
+      ]
+    },
+    {
+      "block": "air",
+      "from": [
+        12,
+        7,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        12,
+        9,
+        19
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "from": [
+        12,
+        6,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        12,
+        6,
+        19
+      ]
+    },
+    {
+      "block": "air",
+      "from": [
+        13,
+        8,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        13,
+        10,
+        19
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "from": [
+        13,
+        7,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        13,
+        7,
+        19
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "three-wide upper landing",
+      "from": [
+        13,
+        7,
+        19
+      ],
+      "op": "cuboid",
+      "to": [
+        15,
+        7,
+        21
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "upper landing clearance",
+      "from": [
+        13,
+        8,
+        19
+      ],
+      "op": "cuboid",
+      "to": [
+        15,
+        10,
+        21
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "stair lower landing",
+      "from": [
+        9,
+        3,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        3,
+        19
+      ]
+    },
+    {
+      "block": "air",
+      "comment": "stair lower landing clearance",
+      "from": [
+        9,
+        4,
+        17
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        6,
+        19
+      ]
+    },
+    {
+      "axis": "x",
+      "block": "brick",
+      "comment": "dominant east-west main gable",
+      "fill_gable": "stone_cracked",
+      "from": [
+        4,
+        12,
+        7
+      ],
+      "op": "roof_gable",
+      "to": [
+        23,
+        19,
+        23
+      ]
+    },
+    {
+      "axis": "z",
+      "block": "brick",
+      "comment": "higher intersecting cross gable",
+      "fill_gable": "stone_cracked",
+      "from": [
+        8,
+        12,
+        7
+      ],
+      "op": "roof_gable",
+      "to": [
+        18,
+        20,
+        17
+      ]
+    },
+    {
+      "axis": "z",
+      "block": "dark_planks",
+      "comment": "sheltered porch gable",
+      "fill_gable": "stone_cracked",
+      "from": [
+        6,
+        8,
+        3
+      ],
+      "op": "roof_gable",
+      "to": [
+        21,
+        11,
+        8
+      ]
+    },
+    {
+      "axis": "x",
+      "block": "brick",
+      "comment": "lower service-wing gable",
+      "fill_gable": "stone_mossy",
+      "from": [
+        1,
+        10,
+        21
+      ],
+      "op": "roof_gable",
+      "to": [
+        15,
+        14,
+        30
+      ]
+    },
+    {
+      "axis": "z",
+      "block": "dark_planks",
+      "comment": "reading-bay secondary gable",
+      "fill_gable": "stone_cracked",
+      "from": [
+        22,
+        12,
+        10
+      ],
+      "op": "roof_gable",
+      "to": [
+        26,
+        16,
+        17
+      ]
+    },
+    {
+      "block": "brick",
+      "comment": "reassert chimney after all roof writes",
+      "from": [
+        3,
+        3,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        6,
+        21,
+        16
+      ]
+    },
+    {
+      "block": "stone_floor",
+      "comment": "chimney flue core",
+      "from": [
+        4,
+        7,
+        14
+      ],
+      "op": "cuboid",
+      "to": [
+        5,
+        20,
+        15
+      ]
+    },
+    {
+      "block": "stone_cracked",
+      "comment": "chimney cap silhouette",
+      "from": [
+        3,
+        20,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        6,
+        21,
+        16
+      ]
+    },
+    {
+      "block": "brick",
+      "comment": "hearth firebox mass",
+      "from": [
+        7,
+        4,
+        14
+      ],
+      "op": "cuboid",
+      "to": [
+        8,
+        6,
+        15
+      ]
+    },
+    {
+      "block": "gold",
+      "comment": "hearth focal inlay",
+      "from": [
+        8,
+        3,
+        14
+      ],
+      "op": "cuboid",
+      "to": [
+        9,
+        3,
+        15
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "dining table",
+      "from": [
+        18,
+        4,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        20,
+        4,
+        15
+      ]
+    },
+    {
+      "block": "brick",
+      "comment": "kitchen range",
+      "from": [
+        20,
+        4,
+        22
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        5,
+        24
+      ]
+    },
+    {
+      "block": "bookshelf",
+      "comment": "pantry shelving",
+      "from": [
+        3,
+        4,
+        24
+      ],
+      "op": "cuboid",
+      "to": [
+        4,
+        6,
+        26
+      ]
+    },
+    {
+      "block": "dark_planks",
+      "comment": "workshop bench",
+      "from": [
+        10,
+        4,
+        23
+      ],
+      "op": "cuboid",
+      "to": [
+        12,
+        4,
+        23
+      ]
+    },
+    {
+      "block": "red_wool",
+      "comment": "upper bedroom bedroll",
+      "from": [
+        7,
+        8,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        10,
+        8,
+        10
+      ]
+    },
+    {
+      "block": "bookshelf",
+      "comment": "bedroom storage",
+      "from": [
+        13,
+        8,
+        9
+      ],
+      "op": "cuboid",
+      "to": [
+        14,
+        9,
+        10
+      ]
+    },
+    {
+      "block": "bookshelf",
+      "comment": "study bookshelves",
+      "from": [
+        20,
+        8,
+        12
+      ],
+      "op": "cuboid",
+      "to": [
+        21,
+        10,
+        12
+      ]
+    },
+    {
+      "block": "gold",
+      "comment": "reading-bay writing desk beside clear aisle",
+      "from": [
+        24,
+        8,
+        13
+      ],
+      "op": "cuboid",
+      "to": [
+        24,
+        8,
+        14
+      ]
+    },
+    {
+      "block": "red_wool",
+      "comment": "reading-bay seat beside clear aisle",
+      "from": [
+        24,
+        8,
+        15
+      ],
+      "op": "cuboid",
+      "to": [
+        25,
+        8,
+        15
+      ]
+    },
+    {
+      "block": "stone_mossy",
+      "comment": "south weathered water table",
+      "from": [
+        5,
+        3,
+        8
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        3,
+        8
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "south projecting floor band",
+      "from": [
+        5,
+        7,
+        7
+      ],
+      "op": "cuboid",
+      "to": [
+        22,
+        7,
+        8
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "east facade shallow buttress",
+      "from": [
+        22,
+        4,
+        10
+      ],
+      "op": "cuboid",
+      "to": [
+        23,
+        6,
+        10
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "east facade shallow buttress",
+      "from": [
+        22,
+        4,
+        18
+      ],
+      "op": "cuboid",
+      "to": [
+        23,
+        6,
+        18
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "service wing west buttress",
+      "from": [
+        1,
+        3,
+        23
+      ],
+      "op": "cuboid",
+      "to": [
+        2,
+        7,
+        24
+      ]
+    },
+    {
+      "block": "cobble",
+      "comment": "service wing west buttress",
+      "from": [
+        1,
+        3,
+        28
+      ],
+      "op": "cuboid",
+      "to": [
+        2,
+        7,
+        29
+      ]
+    },
+    {
+      "at": [
+        1,
+        3,
+        17
+      ],
+      "block": "cobble",
+      "comment": "west return exterior lamp plinth",
+      "op": "set"
+    },
+    {
+      "at": [
+        1,
+        4,
+        17
+      ],
+      "block": "air",
+      "comment": "west return supported fixture position",
+      "op": "set"
+    },
+    {
+      "at": [
+        2,
+        3,
+        21
+      ],
+      "block": "cobble",
+      "comment": "service-corner exterior lamp plinth",
+      "op": "set"
+    },
+    {
+      "at": [
+        2,
+        4,
+        21
+      ],
+      "block": "air",
+      "comment": "service-corner supported fixture position",
+      "op": "set"
+    },
+    {
+      "at": [
+        13,
+        4,
+        1
+      ],
+      "block": "air",
+      "comment": "clear approach navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        13,
+        4,
+        1
+      ],
+      "facing": "south",
+      "name": "approach",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        13,
+        4,
+        6
+      ],
+      "block": "air",
+      "comment": "clear porch navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        13,
+        4,
+        6
+      ],
+      "facing": "none",
+      "name": "porch",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        13,
+        4,
+        10
+      ],
+      "block": "air",
+      "comment": "clear vestibule navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        13,
+        4,
+        10
+      ],
+      "facing": "none",
+      "name": "vestibule",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        13,
+        4,
+        14
+      ],
+      "block": "air",
+      "comment": "clear hearth navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        13,
+        4,
+        14
+      ],
+      "facing": "none",
+      "name": "hearth",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        19,
+        4,
+        16
+      ],
+      "block": "air",
+      "comment": "clear dining navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        19,
+        4,
+        16
+      ],
+      "facing": "none",
+      "name": "dining",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        16,
+        4,
+        23
+      ],
+      "block": "air",
+      "comment": "clear kitchen navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        16,
+        4,
+        23
+      ],
+      "facing": "none",
+      "name": "kitchen",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        5,
+        4,
+        25
+      ],
+      "block": "air",
+      "comment": "clear pantry navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        5,
+        4,
+        25
+      ],
+      "facing": "none",
+      "name": "pantry",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        11,
+        4,
+        25
+      ],
+      "block": "air",
+      "comment": "clear workshop navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        11,
+        4,
+        25
+      ],
+      "facing": "none",
+      "name": "workshop",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        8,
+        4,
+        30
+      ],
+      "block": "air",
+      "comment": "clear rear_exit navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        8,
+        4,
+        30
+      ],
+      "facing": "none",
+      "name": "rear_exit",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        2,
+        4,
+        19
+      ],
+      "block": "air",
+      "comment": "clear west_return navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        2,
+        4,
+        19
+      ],
+      "facing": "none",
+      "name": "west_return",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        9,
+        4,
+        18
+      ],
+      "block": "air",
+      "comment": "clear stair_bottom navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        9,
+        4,
+        18
+      ],
+      "facing": "none",
+      "name": "stair_bottom",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        14,
+        8,
+        20
+      ],
+      "block": "air",
+      "comment": "clear upper_landing navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        14,
+        8,
+        20
+      ],
+      "facing": "none",
+      "name": "upper_landing",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        17,
+        8,
+        15
+      ],
+      "block": "air",
+      "comment": "clear gallery navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        17,
+        8,
+        15
+      ],
+      "facing": "none",
+      "name": "gallery",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        11,
+        8,
+        10
+      ],
+      "block": "air",
+      "comment": "clear bedroom navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        11,
+        8,
+        10
+      ],
+      "facing": "none",
+      "name": "bedroom",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "at": [
+        24,
+        8,
+        12
+      ],
+      "block": "air",
+      "comment": "clear study navigation anchor",
+      "op": "set"
+    },
+    {
+      "at": [
+        24,
+        8,
+        12
+      ],
+      "facing": "none",
+      "name": "study",
+      "op": "anchor",
+      "type": "navigation"
+    },
+    {
+      "face": "south",
+      "height": 3,
+      "name": "south_road",
+      "op": "connector",
+      "origin": [
+        10,
+        4,
+        0
+      ],
+      "type": "house_entry",
+      "width": 7
+    },
+    {
+      "face": "north",
+      "height": 3,
+      "name": "rear_service",
+      "op": "connector",
+      "origin": [
+        7,
+        4,
+        31
+      ],
+      "type": "service_exit",
+      "width": 2
+    },
+    {
+      "face": "west",
+      "height": 3,
+      "name": "west_return",
+      "op": "connector",
+      "origin": [
+        0,
+        4,
+        18
+      ],
+      "type": "exterior_return",
+      "width": 3
+    },
+    {
+      "at": [
+        15,
+        4,
+        1
+      ],
+      "block": "lantern",
+      "comment": "deterministic supported edge-fixture plan; showcase >=10 service >=8",
+      "op": "set"
+    },
+    {
+      "at": [
+        10,
+        4,
+        4
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        15,
+        4,
+        10
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        21,
+        4,
+        12
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        8,
+        4,
+        13
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        16,
+        4,
+        13
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        7,
+        4,
+        16
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        17,
+        4,
+        16
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        20,
+        4,
+        16
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        12,
+        4,
+        19
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        2,
+        4,
+        21
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        13,
+        4,
+        23
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        6,
+        4,
+        30
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        19,
+        8,
+        11
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        20,
+        8,
+        11
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        6,
+        8,
+        17
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        19,
+        8,
+        17
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        21,
+        8,
+        17
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        6,
+        8,
+        18
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        12,
+        8,
+        21
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        9,
+        9,
+        10
+      ],
+      "block": "lantern",
+      "op": "set"
+    },
+    {
+      "at": [
+        10,
+        9,
+        10
+      ],
+      "block": "lantern",
+      "op": "set"
+    }
+  ],
+  "origin": [
+    13,
+    4,
+    1
+  ],
+  "palette": {
+    "air": "minecraft:air",
+    "bookshelf": "minecraft:bookshelf",
+    "brick": "minecraft:brick_block",
+    "cobble": "minecraft:cobblestone",
+    "dark_log": {
+      "block": "minecraft:dark_oak_log",
+      "states": {
+        "pillar_axis": "y"
+      }
+    },
+    "dark_planks": {
+      "block": "minecraft:planks",
+      "states": {
+        "wood_type": "dark_oak"
+      }
+    },
+    "glass": "minecraft:glass",
+    "gold": "minecraft:gold_block",
+    "gravel": "minecraft:gravel",
+    "iron_bars": "minecraft:iron_bars",
+    "lantern": {
+      "block": "minecraft:lantern",
+      "states": {
+        "hanging": false
+      }
+    },
+    "red_wool": {
+      "block": "minecraft:wool",
+      "states": {
+        "color": "red"
+      }
+    },
+    "stone_cracked": {
+      "block": "minecraft:stonebrick",
+      "states": {
+        "stone_brick_type": "cracked"
+      }
+    },
+    "stone_default": {
+      "block": "minecraft:stonebrick",
+      "states": {
+        "stone_brick_type": "default"
+      }
+    },
+    "stone_floor": "minecraft:stone",
+    "stone_mossy": {
+      "block": "minecraft:stonebrick",
+      "states": {
+        "stone_brick_type": "mossy"
+      }
+    }
+  },
+  "production_standard": "AIONSTRUCT_STRUCTURE_STANDARD_V1",
+  "rotation_policy": "none",
+  "schema": "aionstruct.blueprint.v1",
+  "short_name": "wayfarers_hearth_house",
+  "size": [
+    30,
+    22,
+    32
+  ],
+  "world_grammar": "AIONSTRUCT_WORLD_GRAMMAR_V1"
+}

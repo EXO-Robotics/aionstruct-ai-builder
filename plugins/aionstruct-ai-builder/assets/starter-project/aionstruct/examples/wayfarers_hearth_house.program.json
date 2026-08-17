@@ -1,0 +1,61 @@
+{
+  "schema": "aionstruct.structure_program.v1",
+  "structure_id": "example:drafts/wayfarers_hearth_house",
+  "envelope": {
+    "size": [30, 22, 32],
+    "ground_level": 4,
+    "rotation_policy": "none",
+    "terrain_policy": "authored foundations and three approach aprons only; all other terrain remains void"
+  },
+  "rooms": [
+    {"id":"approach_porch","bounds":[[10,4,0],[16,4,7]],"minimum_usable_floor":45,"entrance":"south road","focal":"projecting porch gable","circulation":"approach","furnishing":"open arrival deck"},
+    {"id":"vestibule","bounds":[[7,4,9],[16,4,12]],"minimum_usable_floor":24,"entrance":"porch","focal":"compressed timber threshold","circulation":"vestibule","furnishing":"recessed window bays"},
+    {"id":"double_height_hearth","bounds":[[7,4,12],[16,4,17]],"minimum_usable_floor":40,"entrance":"vestibule","focal":"brick firebox and gold inlay","circulation":"hearth","furnishing":"open stair-side gathering floor"},
+    {"id":"dining_room","bounds":[[17,4,12],[24,4,18]],"minimum_usable_floor":26,"entrance":"hearth","focal":"accessible east reading bay","circulation":"dining","furnishing":"three-wide timber table and clear projecting bay"},
+    {"id":"kitchen_butler_link","bounds":[[14,4,19],[21,4,24]],"minimum_usable_floor":32,"entrance":"dining and hearth","focal":"brick range","circulation":"kitchen","furnishing":"range and clear two-wide service aisle"},
+    {"id":"pantry","bounds":[[3,4,23],[7,4,28]],"minimum_usable_floor":18,"entrance":"workshop","focal":"west shelving","circulation":"pantry","furnishing":"bookshelf storage bank"},
+    {"id":"workshop","bounds":[[9,4,23],[13,4,28]],"minimum_usable_floor":22,"entrance":"kitchen","focal":"north barred window","circulation":"workshop","furnishing":"low workbench"},
+    {"id":"rear_hall","bounds":[[7,4,27],[12,4,31]],"minimum_usable_floor":18,"entrance":"workshop","focal":"rear service door","circulation":"rear_exit","furnishing":"clear exit apron"},
+    {"id":"upper_bedroom","bounds":[[7,8,9],[15,8,13]],"minimum_usable_floor":18,"entrance":"upper landing","focal":"south gable windows","circulation":"bedroom","furnishing":"bedroll and storage"},
+    {"id":"hearth_gallery","bounds":[[13,8,13],[21,8,21]],"minimum_usable_floor":52,"entrance":"main stair","focal":"double-height hearth overlook","circulation":"gallery","furnishing":"clear broad gallery loop"},
+    {"id":"reading_study","bounds":[[23,8,11],[24,8,15]],"minimum_usable_floor":6,"entrance":"gallery","focal":"projecting east window","circulation":"study","furnishing":"writing desk and seat beside clear aisle"},
+    {"id":"west_return","bounds":[[0,4,18],[7,4,20]],"minimum_usable_floor":20,"entrance":"side door","focal":"exterior lamp plinth","circulation":"west_return","furnishing":"unobstructed gravel return"}
+  ],
+  "routes": [
+    {"id":"public_spine","anchors":["approach","porch","vestibule","hearth","dining"],"minimum_width":3,"minimum_headroom":3,"route_class":"showcase_safe"},
+    {"id":"service_loop","anchors":["hearth","kitchen","workshop","pantry","rear_exit"],"minimum_width":2,"minimum_headroom":3,"route_class":"service_safe"},
+    {"id":"residential_vertical","anchors":["stair_bottom","upper_landing","gallery","bedroom","study"],"minimum_width":3,"minimum_headroom":3,"route_class":"showcase_safe"},
+    {"id":"secondary_exit","anchors":["hearth","west_return"],"minimum_width":2,"minimum_headroom":3,"route_class":"service_safe"}
+  ],
+  "apertures": [
+    {"id":"south_entry","bounds":[[11,4,8],[13,6,12]],"minimum_clear_width":3,"minimum_clear_height":3},
+    {"id":"kitchen_link","bounds":[[14,4,18],[16,6,21]],"minimum_clear_width":3,"minimum_clear_height":3},
+    {"id":"ground_reading_bay","bounds":[[21,4,13],[24,6,14]],"minimum_clear_width":2,"minimum_clear_height":3},
+    {"id":"rear_exit","bounds":[[7,4,27],[12,6,29]],"minimum_clear_width":2,"minimum_clear_height":3},
+    {"id":"west_side_door","bounds":[[0,4,18],[7,6,20]],"minimum_clear_width":3,"minimum_clear_height":3},
+    {"id":"study_link","bounds":[[18,8,13],[23,10,15]],"minimum_clear_width":3,"minimum_clear_height":3}
+  ],
+  "lighting_zones": [
+    {"id":"public_ground","bounds":[[7,4,9],[21,4,20]],"minimum_static_light":10},
+    {"id":"porch_approach","bounds":[[10,4,0],[16,4,7]],"minimum_static_light":10},
+    {"id":"upper_showcase","bounds":[[7,8,9],[24,8,21]],"minimum_static_light":10},
+    {"id":"service_wing","bounds":[[2,4,21],[21,4,31]],"minimum_static_light":8},
+    {"id":"west_return","bounds":[[0,4,18],[7,4,20]],"minimum_static_light":8}
+  ],
+  "palette_roles": [
+    {"role":"load_bearing","blocks":["minecraft:stonebrick"],"minimum_cells":1200},
+    {"role":"secondary_masonry","blocks":["minecraft:cobblestone","minecraft:brick_block"],"minimum_cells":800},
+    {"role":"floor_and_path","blocks":["minecraft:stone","minecraft:gravel"],"minimum_cells":90},
+    {"role":"roof_and_floor_timber","blocks":["minecraft:planks"],"minimum_cells":300},
+    {"role":"structural_timber","blocks":["minecraft:dark_oak_log"],"minimum_cells":100},
+    {"role":"aperture","blocks":["minecraft:glass","minecraft:iron_bars"],"minimum_cells":30},
+    {"role":"fixture","blocks":["minecraft:lantern"],"minimum_cells":12},
+    {"role":"furnishing","blocks":["minecraft:bookshelf","minecraft:wool","minecraft:gold_block"],"minimum_cells":30}
+  ],
+  "exclusions": [
+    "no arbitrary terrain adaptation, rotation, or mirroring",
+    "no entities, block entities, doors, redstone, loot, fluids, or gameplay scripts",
+    "no slabs, stairs, fences, panes, or concealed light sources",
+    "no BDS, client, runtime-light, spawn-safety, performance, world-generation, or release claim"
+  ]
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AIONSTRUCT voxel cube">
+  <path fill="#D58A52" d="M32 4 58 18 32 32 6 18Z"/>
+  <path fill="#9A4F31" d="m6 18 26 14v28L6 46Z"/>
+  <path fill="#693A2B" d="m58 18-26 14v28l26-14Z"/>
+  <path fill="none" stroke="#F4E7D0" stroke-width="3" d="m18 24 14 8 14-8M32 32v16"/>
+</svg>

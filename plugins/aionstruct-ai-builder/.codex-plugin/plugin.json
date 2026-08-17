@@ -1,0 +1,35 @@
+{
+  "name": "aionstruct-ai-builder",
+  "version": "0.1.0",
+  "description": "Constraint-driven AI authoring, inspection, preview, and offline compilation of original Minecraft Bedrock structures.",
+  "author": {
+    "name": "EXO-Robotics",
+    "url": "https://github.com/EXO-Robotics"
+  },
+  "homepage": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
+  "repository": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
+  "license": "MIT",
+  "keywords": ["minecraft", "bedrock", "structures", "aionstruct", "ai-development", "mcstructure"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AIONSTRUCT AI Builder",
+    "shortDescription": "Design and compile Bedrock structures offline.",
+    "longDescription": "A constraint-first structure studio for AI Minecraft development. Author strict JSON blueprints, inspect final voxel IR, prove traversal and fixture support, render engineering and light previews, then compile deterministic .mcstructure bytes without Minecraft Editor.",
+    "developerName": "EXO-Robotics",
+    "websiteURL": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
+    "category": "Developer Tools",
+    "capabilities": ["Interactive", "Write"],
+    "defaultPrompt": [
+      "Design an original Bedrock house and render its engineering board.",
+      "Audit this AIONSTRUCT blueprint for traversal and lighting defects.",
+      "Compile this validated blueprint to deterministic .mcstructure bytes."
+    ],
+    "brandColor": "#B86B3D",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg",
+    "screenshots": [
+      "./assets/screenshots/wayfarers-hearth-board.png",
+      "./assets/screenshots/wayfarers-hearth-lightmap.png"
+    ]
+  }
+}

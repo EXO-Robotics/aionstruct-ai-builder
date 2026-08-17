@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aionstruct.blueprint.v1",
+  "title": "AIONSTRUCT Blueprint v1",
+  "description": "Finite, data-only source language for deterministic offline Bedrock structure compilation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "size", "palette", "ops", "world_grammar", "production_standard"],
+  "properties": {
+    "schema": { "const": "aionstruct.blueprint.v1" },
+    "id": { "type": "string", "pattern": "^[a-z0-9_.-]+:[a-z0-9_./-]+$" },
+    "short_name": { "$ref": "#/$defs/alias" },
+    "size": { "$ref": "#/$defs/size" },
+    "origin": { "$ref": "#/$defs/point" },
+    "palette": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 256,
+      "propertyNames": { "$ref": "#/$defs/alias" },
+      "additionalProperties": { "$ref": "#/$defs/paletteEntry" }
+    },
+    "ops": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          { "$ref": "#/$defs/cuboid" },
+          { "$ref": "#/$defs/floor" },
+          { "$ref": "#/$defs/wall" },
+          { "$ref": "#/$defs/shell" },
+          { "$ref": "#/$defs/pillar" },
+          { "$ref": "#/$defs/set" },
+          { "$ref": "#/$defs/doorway" },
+          { "$ref": "#/$defs/window" },
+          { "$ref": "#/$defs/roofGable" },
+          { "$ref": "#/$defs/stair" },
+          { "$ref": "#/$defs/arch" },
+          { "$ref": "#/$defs/scatter" },
+          { "$ref": "#/$defs/replace" },
+          { "$ref": "#/$defs/anchorOp" },
+          { "$ref": "#/$defs/connectorOp" }
+        ]
+      }
+    },
+    "anchors": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/stableName" },
+      "additionalProperties": { "$ref": "#/$defs/point" }
+    },
+    "connectors": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/connectorRecord" }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "product_type": { "type": "string", "enum": ["poi", "complex_module", "landmark", "realm_segment"] },
+        "biome": { "$ref": "#/$defs/stableName" },
+        "dialect": { "$ref": "#/$defs/stableName" },
+        "vertical_band": { "$ref": "#/$defs/stableName" },
+        "discovery": { "type": "string", "maxLength": 1024 },
+        "notes": { "type": "string", "maxLength": 4096 },
+        "entities_forbidden": { "type": "boolean" },
+        "block_entities_forbidden": { "type": "boolean" },
+        "max_occupied_blocks": { "type": "integer", "minimum": 1 },
+        "max_palette": { "type": "integer", "minimum": 1, "maximum": 256 },
+        "scatter_denominator": { "type": "integer", "minimum": 1 },
+        "ground_level": { "type": "integer" }
+      }
+    },
+    "world_grammar": { "const": "AIONSTRUCT_WORLD_GRAMMAR_V1" },
+    "production_standard": { "const": "AIONSTRUCT_STRUCTURE_STANDARD_V1" },
+    "rotation_policy": { "enum": ["none", "y_90"] },
+    "mirror_policy": { "enum": ["mirror_none", "mirror_x", "mirror_z", "mirror_xz"] }
+  },
+  "$defs": {
+    "alias": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$", "not": { "const": "void" } },
+    "stableName": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]*$" },
+    "identifier": { "type": "string", "pattern": "^[a-z0-9_.-]+:[a-z0-9_./-]+$" },
+    "blockToken": {
+      "type": "string",
+      "anyOf": [
+        { "const": "void" },
+        { "pattern": "^[a-z][a-z0-9_]*$" },
+        { "$ref": "#/$defs/identifier" }
+      ]
+    },
+    "point": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "integer" }
+    },
+    "size": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "type": "integer", "minimum": 1, "maximum": 64 }
+    },
+    "stateValue": {
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "integer" },
+        { "type": "string", "maxLength": 256 }
+      ]
+    },
+    "states": {
+      "type": "object",
+      "propertyNames": { "pattern": "^(?:[a-z0-9_.-]+:)?[a-z][a-z0-9_.-]*$" },
+      "additionalProperties": { "$ref": "#/$defs/stateValue" }
+    },
+    "paletteEntry": {
+      "oneOf": [
+        { "$ref": "#/$defs/identifier" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["block"],
+          "properties": {
+            "block": { "$ref": "#/$defs/identifier" },
+            "states": { "$ref": "#/$defs/states" },
+            "version": { "type": "integer", "minimum": 0 }
+          }
+        }
+      ]
+    },
+    "comment": { "type": "string", "maxLength": 4096 },
+    "cuboid": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "block"],
+      "properties": {
+        "op": { "const": "cuboid" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "block": { "$ref": "#/$defs/blockToken" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "floor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "block"],
+      "properties": {
+        "op": { "const": "floor" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "block": { "$ref": "#/$defs/blockToken" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "wall": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "block"],
+      "properties": {
+        "op": { "const": "wall" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "block": { "$ref": "#/$defs/blockToken" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "shell": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "block"],
+      "properties": {
+        "op": { "const": "shell" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "block": { "$ref": "#/$defs/blockToken" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "walls": { "type": "boolean" },
+        "floor": { "type": "boolean" }, "ceiling": { "type": "boolean" }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "pillar": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "at", "height", "block"],
+      "properties": {
+        "op": { "const": "pillar" }, "at": { "$ref": "#/$defs/point" }, "height": { "type": "integer", "minimum": 1 },
+        "block": { "$ref": "#/$defs/blockToken" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "set": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "at", "block"],
+      "properties": {
+        "op": { "const": "set" }, "at": { "$ref": "#/$defs/point" }, "block": { "$ref": "#/$defs/blockToken" },
+        "states": { "$ref": "#/$defs/states" }, "version": { "type": "integer", "minimum": 0 },
+        "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "doorway": { "$ref": "#/$defs/openingDoorway" },
+    "window": { "$ref": "#/$defs/openingWindow" },
+    "openingDoorway": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "face", "y", "width", "height", "fill"],
+      "properties": {
+        "op": { "const": "doorway" }, "face": { "$ref": "#/$defs/cardinal" },
+        "wall_z": { "type": "integer" }, "center_x": { "type": "integer" },
+        "wall_x": { "type": "integer" }, "center_z": { "type": "integer" },
+        "y": { "type": "integer", "minimum": 0 }, "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }, "fill": { "$ref": "#/$defs/blockToken" },
+        "comment": { "$ref": "#/$defs/comment" }
+      },
+      "allOf": [{ "$ref": "#/$defs/openingFaceCoordinates" }]
+    },
+    "openingWindow": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "face", "y", "width", "height", "fill"],
+      "properties": {
+        "op": { "const": "window" }, "face": { "$ref": "#/$defs/cardinal" },
+        "wall_z": { "type": "integer" }, "center_x": { "type": "integer" },
+        "wall_x": { "type": "integer" }, "center_z": { "type": "integer" },
+        "y": { "type": "integer", "minimum": 0 }, "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }, "fill": { "$ref": "#/$defs/blockToken" },
+        "comment": { "$ref": "#/$defs/comment" }
+      },
+      "allOf": [{ "$ref": "#/$defs/openingFaceCoordinates" }]
+    },
+    "roofGable": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "axis", "block", "fill_gable"],
+      "properties": {
+        "op": { "const": "roof_gable" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "axis": { "enum": ["x", "z"] }, "block": { "$ref": "#/$defs/blockToken" },
+        "fill_gable": { "$ref": "#/$defs/blockToken" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "stair": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "at", "steps", "facing", "block"],
+      "properties": {
+        "op": { "const": "stair" }, "at": { "$ref": "#/$defs/point" }, "steps": { "type": "integer", "minimum": 1 },
+        "facing": { "$ref": "#/$defs/cardinal" }, "block": { "$ref": "#/$defs/blockToken" },
+        "states": { "$ref": "#/$defs/states" }, "version": { "type": "integer", "minimum": 0 },
+        "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "arch": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "face", "y", "width", "height", "fill", "lintel"],
+      "properties": {
+        "op": { "const": "arch" }, "face": { "$ref": "#/$defs/cardinal" },
+        "wall_z": { "type": "integer" }, "center_x": { "type": "integer" },
+        "wall_x": { "type": "integer" }, "center_z": { "type": "integer" },
+        "y": { "type": "integer", "minimum": 0 }, "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }, "fill": { "$ref": "#/$defs/blockToken" },
+        "lintel": { "$ref": "#/$defs/blockToken" }, "comment": { "$ref": "#/$defs/comment" }
+      },
+      "allOf": [{ "$ref": "#/$defs/openingFaceCoordinates" }]
+    },
+    "scatter": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "block", "count", "seed"],
+      "properties": {
+        "op": { "const": "scatter" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "block": { "$ref": "#/$defs/blockToken" }, "count": { "type": "integer", "minimum": 0 },
+        "seed": { "type": "integer" }, "states": { "$ref": "#/$defs/states" },
+        "version": { "type": "integer", "minimum": 0 }, "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "replace": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "from", "to", "from_block", "to_block"],
+      "properties": {
+        "op": { "const": "replace" }, "from": { "$ref": "#/$defs/point" }, "to": { "$ref": "#/$defs/point" },
+        "from_block": { "$ref": "#/$defs/blockToken" }, "to_block": { "$ref": "#/$defs/blockToken" },
+        "states": { "$ref": "#/$defs/states" }, "version": { "type": "integer", "minimum": 0 },
+        "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "anchorOp": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "name", "at", "type"],
+      "properties": {
+        "op": { "const": "anchor" }, "name": { "$ref": "#/$defs/stableName" }, "at": { "$ref": "#/$defs/point" },
+        "type": { "$ref": "#/$defs/stableName" }, "facing": { "$ref": "#/$defs/facing" },
+        "comment": { "$ref": "#/$defs/comment" }
+      }
+    },
+    "connectorOp": {
+      "type": "object", "additionalProperties": false,
+      "required": ["op", "face", "origin", "width", "height", "type"],
+      "properties": {
+        "op": { "const": "connector" }, "name": { "$ref": "#/$defs/stableName" },
+        "id": { "$ref": "#/$defs/stableName" }, "face": { "$ref": "#/$defs/cardinal" },
+        "origin": { "$ref": "#/$defs/point" }, "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }, "type": { "$ref": "#/$defs/stableName" },
+        "comment": { "$ref": "#/$defs/comment" }
+      },
+      "oneOf": [{ "required": ["name"] }, { "required": ["id"] }]
+    },
+    "connectorRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "face", "origin_local", "width", "height", "type"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableName" }, "face": { "$ref": "#/$defs/cardinal" },
+        "origin_local": { "$ref": "#/$defs/point" }, "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 }, "type": { "$ref": "#/$defs/stableName" }
+      }
+    },
+    "cardinal": { "enum": ["north", "south", "east", "west"] },
+    "facing": { "enum": ["none", "north", "south", "east", "west", "up", "down"] },
+    "openingFaceCoordinates": {
+      "if": { "properties": { "face": { "enum": ["north", "south"] } } },
+      "then": { "required": ["wall_z", "center_x"], "not": { "anyOf": [{ "required": ["wall_x"] }, { "required": ["center_z"] }] } },
+      "else": { "required": ["wall_x", "center_z"], "not": { "anyOf": [{ "required": ["wall_z"] }, { "required": ["center_x"] }] } }
+    }
+  }
+}

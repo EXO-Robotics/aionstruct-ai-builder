@@ -1,0 +1,53 @@
+---
+name: build-aionstruct-structures
+description: Design, audit, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline. Use for AI Minecraft development involving houses, castles, ruins, dungeons, room programs, traversal, supported lighting, explicit-air versus void behavior, deterministic .mcstructure output, or pre-BDS structure review without Minecraft Editor.
+---
+
+# Build AIONSTRUCT Structures
+
+Create architecture as constrained data, inspect the final voxels, and compile only after spatial quality passes. Keep static, BDS, client, gameplay, world-generation, and console evidence separate.
+
+## Start safely
+
+1. Inspect the target repository and preserve unrelated or dirty work.
+2. Locate the plugin root two directories above this skill directory.
+3. If no AIONSTRUCT runtime exists, bootstrap the packaged starter into a new empty directory:
+
+```bash
+python3 <plugin-root>/scripts/bootstrap_project.py <new-project-directory>
+```
+
+4. Run `python3 tools/aionstruct.py doctor` in the project. Install `requirements.txt` only when PNG previews are required and the dependency is missing.
+5. Read [workflow.md](references/workflow.md) before authoring. Read [blueprint-format.md](references/blueprint-format.md) when editing source or debugging validation. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level builds. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
+
+## Authoring loop
+
+1. Freeze the envelope, datum, silhouette, room program, route widths, headroom, exits, anchors, apertures, lighting zones, palette budget, and exclusions in sidecar contracts.
+2. Draft a strict finite `.aionstruct.json` blueprint. Keep intended clearance as explicit `minecraft:air`; leave untouched terrain absent as void.
+3. Run `validate`, then `expand`. Inspect final IR rather than trusting operation comments.
+4. Require every intended walkable cell and anchor to share the declared traversal component. Verify full-depth apertures, stair support/headroom/landings, and support-sensitive fixtures.
+5. Render core SVGs, the isometric engineering board, and the static lighting heatmap. Review massing and cutaways visually.
+6. Run the static quality contract. Fix failed gates in the source; do not weaken contracts to make a design pass.
+7. Compile `.mcstructure` bytes and require independent full-volume decode equality.
+8. Qualify the exact artifact separately in a fresh, digest-pinned, portless BDS fixture before claiming runtime placement or persistence.
+
+Use the packaged end-to-end command after the source and contract exist:
+
+```bash
+python3 tools/aionstruct.py build path/to/structure.aionstruct.json \
+  --contract path/to/structure.quality.json
+```
+
+## AI collaboration rules
+
+- Treat model output as an architectural proposal, never as proof.
+- Require the model to return dimensions, room bounds, routes, apertures, anchors, palette roles, fixture coordinates/support, exclusions, and acceptance tests.
+- Translate proposals into the strict operation vocabulary; reject invented fields.
+- Detect conflicts in final IR, especially windows versus doors, furniture versus routes, roofs versus upper rooms, and fixtures versus headroom.
+- Preserve source, contract, IR, preview, compile-receipt, and artifact hashes.
+
+## Fail closed
+
+Stop static promotion when validation fails, any required anchor is unreachable, intended walkable islands remain, an aperture is partially overwritten, a fixture lacks support, lighting coverage is incomplete, preview hashes are stale, or independent decode differs.
+
+Never describe static light math as runtime lighting, darkness as spawn proof, a decoded file as BDS placement proof, or a server check as client/console/release proof.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIONSTRUCT AI Builder"
+  short_description: "Design and compile Bedrock structures offline"
+  default_prompt: "Use $build-aionstruct-structures to design, validate, preview, and compile an original Minecraft Bedrock structure."
