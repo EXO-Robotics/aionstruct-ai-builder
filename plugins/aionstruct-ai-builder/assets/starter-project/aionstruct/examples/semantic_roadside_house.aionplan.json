@@ -1,0 +1,117 @@
+{
+  "schema": "aionstruct.plan.v1",
+  "id": "example:drafts/semantic_roadside_house",
+  "short_name": "semantic_roadside_house",
+  "size": [24, 16, 24],
+  "origin": [0, 0, 0],
+  "palette": {
+    "air": "minecraft:air",
+    "cobble": "minecraft:cobblestone",
+    "glass": "minecraft:glass_pane",
+    "planks": "minecraft:spruce_planks",
+    "roof": "minecraft:deepslate_tiles",
+    "timber": "minecraft:stripped_spruce_log"
+  },
+  "components": [
+    {
+      "id": "base",
+      "kind": "foundation",
+      "from": [4, 1, 4],
+      "to": [19, 2, 19],
+      "block": "cobble",
+      "comment": "raised stone foundation"
+    },
+    {
+      "id": "hall",
+      "kind": "room",
+      "depends_on": ["base"],
+      "from": [5, 3, 5],
+      "to": [18, 10, 18],
+      "wall_block": "timber",
+      "floor_block": "planks",
+      "ceiling_block": "planks",
+      "clear_block": "air",
+      "comment": "single clear-span roadside hall"
+    },
+    {
+      "id": "front_door",
+      "kind": "opening",
+      "host": "hall",
+      "depends_on": ["hall"],
+      "opening_kind": "doorway",
+      "face": "south",
+      "wall_z": 5,
+      "center_x": 11,
+      "y": 4,
+      "width": 2,
+      "height": 3,
+      "fill": "air",
+      "comment": "full-depth entry aperture"
+    },
+    {
+      "id": "east_window",
+      "kind": "opening",
+      "host": "hall",
+      "depends_on": ["hall"],
+      "opening_kind": "window",
+      "face": "east",
+      "wall_x": 18,
+      "center_z": 12,
+      "y": 5,
+      "width": 3,
+      "height": 2,
+      "fill": "glass",
+      "comment": "east daylight window"
+    },
+    {
+      "id": "gable",
+      "kind": "roof",
+      "host": "hall",
+      "depends_on": ["hall"],
+      "from": [4, 11, 4],
+      "to": [19, 15, 19],
+      "axis": "x",
+      "block": "roof",
+      "fill_gable": "timber",
+      "comment": "deep overhanging gable"
+    },
+    {
+      "id": "approach_anchor",
+      "kind": "anchor",
+      "depends_on": ["front_door"],
+      "name": "approach",
+      "at": [11, 4, 6],
+      "type": "entry",
+      "facing": "north"
+    },
+    {
+      "id": "road_connector",
+      "kind": "connector",
+      "depends_on": ["front_door"],
+      "name": "south_road",
+      "face": "south",
+      "origin": [10, 4, 5],
+      "width": 2,
+      "height": 3,
+      "type": "house_entry"
+    }
+  ],
+  "meta": {
+    "product_type": "poi",
+    "biome": "unassigned",
+    "dialect": "semantic_timber_house",
+    "vertical_band": "prototype",
+    "discovery": "compact timber hall with a raised foundation and deep gable",
+    "notes": "Plan v1 alpha example; static authoring evidence only.",
+    "entities_forbidden": true,
+    "block_entities_forbidden": true,
+    "max_occupied_blocks": 12000,
+    "max_palette": 12,
+    "scatter_denominator": 1048576,
+    "ground_level": 3
+  },
+  "world_grammar": "AIONSTRUCT_WORLD_GRAMMAR_V1",
+  "production_standard": "AIONSTRUCT_STRUCTURE_STANDARD_V1",
+  "rotation_policy": "none",
+  "mirror_policy": "mirror_none"
+}

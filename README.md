@@ -8,7 +8,9 @@ A Codex plugin and standalone offline toolkit for AI-assisted Minecraft Bedrock 
 
 ## What it does
 
+- Authors bounded semantic `Plan v1` components with stable IDs and explicit dependency order, then lowers them to the unchanged Blueprint v1 language.
 - Converts strict, finite JSON blueprints into deterministic final voxel IR.
+- Emits structured Plan diagnostics, hash-bound component source maps, material/layer inspections, canonical fingerprints, and structural diffs.
 - Checks traversal, full-depth apertures, stair clearance, fixture support, lighting coverage, material balance, and stale previews.
 - Renders top-down, floor, elevation, isometric, cutaway, and static-light engineering views.
 - Compiles little-endian `.mcstructure` bytes using Bedrock's Z-fastest index order.
@@ -51,21 +53,44 @@ python3 tools/aionstruct.py build \
 
 The command writes deterministic IR, `.mcstructure` bytes, a full-volume decode receipt, engineering previews, and a static quality report.
 
+Try semantic Plan v1:
+
+```bash
+python3 tools/aionstruct.py plan validate \
+  aionstruct/examples/semantic_roadside_house.aionplan.json
+python3 tools/aionstruct.py plan lower \
+  aionstruct/examples/semantic_roadside_house.aionplan.json
+python3 tools/aionstruct.py validate \
+  build/semantic_roadside_house.blueprint.json
+```
+
+Lowering creates only ordinary Blueprint v1 operations and a separate hash-bound source map. Existing Blueprint sources and their compiler bytes remain compatible.
+
 ## Commands
 
 ```bash
 python3 tools/aionstruct.py doctor
+python3 tools/aionstruct.py plan validate <plan>
+python3 tools/aionstruct.py plan lower <plan>
 python3 tools/aionstruct.py validate <blueprint>
 python3 tools/aionstruct.py expand <blueprint>
 python3 tools/aionstruct.py preview <blueprint> --contract <quality-contract>
 python3 tools/aionstruct.py quality <blueprint> --contract <quality-contract>
 python3 tools/aionstruct.py compile <blueprint>
 python3 tools/aionstruct.py build <blueprint> --contract <quality-contract>
+python3 tools/aionstruct.py materials <blueprint>
+python3 tools/aionstruct.py layers <blueprint>
+python3 tools/aionstruct.py fingerprint <blueprint>
+python3 tools/aionstruct.py diff <left-blueprint> <right-blueprint>
 ```
+
+## Design influences
+
+Plan v1 applies the semantic-plan and dependency-graph pattern documented by [CraftDAG](https://github.com/i365dev/CraftDAG), while retaining AIONSTRUCT's own Bedrock compiler and proof authority. Its non-mutating fingerprint/diff workflow is informed by [Nucleation](https://github.com/Schem-at/Nucleation), and future benchmark work will use the spatial-understanding, reasoning, creativity, and commonsense categories described by [MineAnyBuild](https://mineanybuild.github.io/). These are design references, not runtime dependencies; CraftDAG explicitly does not provide Bedrock support.
 
 ## Evidence boundary
 
-A successful offline build proves strict source validation, deterministic expansion, static spatial analysis, optimistic light coverage, deterministic encoding, and independent decode equality. It does **not** prove BDS placement, runtime light, mob spawning, client appearance, terrain fit, multiplayer behavior, console compatibility, or release readiness.
+A successful Plan lowering proves semantic validation, dependency ordering, Blueprint validation, and hash-bound source mapping. A successful offline build additionally proves deterministic expansion, static spatial analysis, optimistic light coverage, deterministic encoding, and independent decode equality. Neither proves BDS placement, runtime light, mob spawning, client appearance, terrain fit, multiplayer behavior, console compatibility, or release readiness.
 
 Qualify exact compiled bytes separately in a disposable, digest-pinned Bedrock Dedicated Server before making runtime claims.
 

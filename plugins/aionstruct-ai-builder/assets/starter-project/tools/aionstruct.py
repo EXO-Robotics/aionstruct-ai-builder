@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 from aionstruct_expand import expand  # noqa: E402
+from aionstruct_plan import load_plan, lower_plan, validate_plan  # noqa: E402
 from aionstruct_quality import load_contract, quality_report  # noqa: E402
 from aionstruct_validate import load_blueprint_json, validate_blueprint  # noqa: E402
 from lib.mcstructure_le import BLOCK_VERSION, encode_mcstructure  # noqa: E402
@@ -23,7 +24,7 @@ from lib.mcstructure_reader import decode_mcstructure_file  # noqa: E402
 from render_aionstruct_preview import load_expanded_ir, write_preview  # noqa: E402
 
 
-TOOL_VERSION = "1.0.0"
+TOOL_VERSION = "1.1.0"
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -151,11 +152,123 @@ def default_paths(blueprint_path: Path) -> tuple[Path, Path, Path, Path]:
     )
 
 
+def inspect_materials(blueprint_path: Path) -> dict[str, Any]:
+    ir = expand(load_validated(blueprint_path))
+    counts = Counter(cell["block"] for cell in ir["cells"])
+    return {
+        "schema": "aionstruct.materials.v1",
+        "structure_id": ir["id"],
+        "size": ir["size"],
+        "distinct_blocks": len(counts),
+        "explicit_cells": len(ir["cells"]),
+        "block_counts": dict(sorted(counts.items())),
+        "source_sha256": sha256(blueprint_path.read_bytes()),
+    }
+
+
+def inspect_layers(blueprint_path: Path) -> dict[str, Any]:
+    ir = expand(load_validated(blueprint_path))
+    volume_per_layer = ir["size"][0] * ir["size"][2]
+    layers = []
+    for y in range(ir["size"][1]):
+        counts = Counter(cell["block"] for cell in ir["cells"] if cell["y"] == y)
+        explicit = sum(counts.values())
+        layers.append(
+            {
+                "y": y,
+                "explicit_cells": explicit,
+                "explicit_air_cells": counts.get("minecraft:air", 0),
+                "void_cells": volume_per_layer - explicit,
+                "block_counts": dict(sorted(counts.items())),
+            }
+        )
+    return {
+        "schema": "aionstruct.layers.v1",
+        "structure_id": ir["id"],
+        "size": ir["size"],
+        "layers": layers,
+        "source_sha256": sha256(blueprint_path.read_bytes()),
+    }
+
+
+def structural_fingerprint(blueprint_path: Path) -> dict[str, Any]:
+    ir = expand(load_validated(blueprint_path))
+    canonical = {
+        "size": ir["size"],
+        "origin": ir["origin"],
+        "cells": ir["cells"],
+        "anchors": sorted(ir["anchors"], key=lambda item: canonical_bytes(item)),
+        "connectors": sorted(ir["connectors"], key=lambda item: canonical_bytes(item)),
+    }
+    return {
+        "schema": "aionstruct.fingerprint.v1",
+        "structure_id": ir["id"],
+        "algorithm": "sha256-canonical-final-structure",
+        "sha256": sha256(canonical_bytes(canonical)),
+        "size": ir["size"],
+        "explicit_cells": len(ir["cells"]),
+    }
+
+
+def structural_diff(left_path: Path, right_path: Path) -> dict[str, Any]:
+    left = expand(load_validated(left_path))
+    right = expand(load_validated(right_path))
+    left_cells = {(cell["x"], cell["y"], cell["z"]): cell for cell in left["cells"]}
+    right_cells = {(cell["x"], cell["y"], cell["z"]): cell for cell in right["cells"]}
+    changed = []
+    for point in sorted(set(left_cells) | set(right_cells)):
+        if left_cells.get(point) != right_cells.get(point):
+            changed.append(
+                {
+                    "local": list(point),
+                    "left": left_cells.get(point),
+                    "right": right_cells.get(point),
+                }
+            )
+    left_anchors = sorted(left["anchors"], key=lambda item: canonical_bytes(item))
+    right_anchors = sorted(right["anchors"], key=lambda item: canonical_bytes(item))
+    left_connectors = sorted(left["connectors"], key=lambda item: canonical_bytes(item))
+    right_connectors = sorted(right["connectors"], key=lambda item: canonical_bytes(item))
+    metadata_changes = {
+        "size": left["size"] != right["size"],
+        "origin": left["origin"] != right["origin"],
+        "anchors": left_anchors != right_anchors,
+        "connectors": left_connectors != right_connectors,
+    }
+    return {
+        "schema": "aionstruct.structural_diff.v1",
+        "identical": not changed and not any(metadata_changes.values()),
+        "left": {"id": left["id"], "size": left["size"], "explicit_cells": len(left_cells)},
+        "right": {"id": right["id"], "size": right["size"], "explicit_cells": len(right_cells)},
+        "changed_cell_count": len(changed),
+        "changed_cell_samples": changed[:64],
+        "metadata_changes": metadata_changes,
+        "sample_limit": 64,
+    }
+
+
+def emit_json(value: dict[str, Any], output: Path | None = None) -> None:
+    data = canonical_bytes(value)
+    if output is None:
+        sys.stdout.buffer.write(data)
+    else:
+        atomic_write(output.resolve(), data)
+        print(f"PASS wrote {output.resolve()}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Design, inspect, preview, and compile AIONSTRUCT structures offline")
     parser.add_argument("--version", action="version", version=f"%(prog)s {TOOL_VERSION}")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("doctor", help="check the local runtime")
+    plan_cmd = sub.add_parser("plan", help="validate or lower semantic Plan v1 source")
+    plan_actions = plan_cmd.add_subparsers(dest="plan_action", required=True)
+    plan_validate = plan_actions.add_parser("validate", help="return structured Plan diagnostics")
+    plan_validate.add_argument("plan", type=Path)
+    plan_lower = plan_actions.add_parser("lower", help="emit ordinary Blueprint v1 plus a source map")
+    plan_lower.add_argument("plan", type=Path)
+    plan_lower.add_argument("--output", type=Path)
+    plan_lower.add_argument("--source-map", type=Path)
     validate = sub.add_parser("validate", help="strictly validate one blueprint")
     validate.add_argument("blueprint", type=Path)
     expand_cmd = sub.add_parser("expand", help="write deterministic final IR")
@@ -176,6 +289,19 @@ def main() -> int:
     build = sub.add_parser("build", help="run validate, IR, compile, previews, and quality")
     build.add_argument("blueprint", type=Path)
     build.add_argument("--contract", required=True, type=Path)
+    materials = sub.add_parser("materials", help="inspect deterministic final block counts")
+    materials.add_argument("blueprint", type=Path)
+    materials.add_argument("--output", type=Path)
+    layers = sub.add_parser("layers", help="inspect deterministic per-Y final layers")
+    layers.add_argument("blueprint", type=Path)
+    layers.add_argument("--output", type=Path)
+    fingerprint = sub.add_parser("fingerprint", help="hash canonical final structure content")
+    fingerprint.add_argument("blueprint", type=Path)
+    fingerprint.add_argument("--output", type=Path)
+    diff = sub.add_parser("diff", help="compare two expanded structures without modifying them")
+    diff.add_argument("left", type=Path)
+    diff.add_argument("right", type=Path)
+    diff.add_argument("--output", type=Path)
     args = parser.parse_args()
 
     try:
@@ -187,6 +313,43 @@ def main() -> int:
                 pillow = None
             print(json.dumps({"python": platform.python_version(), "pillow": pillow, "tool_version": TOOL_VERSION}, sort_keys=True))
             return 0 if sys.version_info >= (3, 10) else 1
+
+        if args.command == "plan":
+            plan_path = args.plan.resolve()
+            plan = load_plan(plan_path)
+            diagnostics = validate_plan(plan)
+            if args.plan_action == "validate":
+                emit_json(
+                    {
+                        "schema": "aionstruct.plan_diagnostics.v1",
+                        "status": "PASS" if not diagnostics else "FAIL",
+                        "plan": str(plan_path),
+                        "diagnostics": diagnostics,
+                    }
+                )
+                return 0 if not diagnostics else 1
+            blueprint, source_map = lower_plan(plan)
+            short_name = plan.get("short_name") or plan["id"].split("/")[-1]
+            output = (args.output or (ROOT / "build" / f"{short_name}.blueprint.json")).resolve()
+            source_output = (args.source_map or output.with_suffix(".source-map.json")).resolve()
+            atomic_write(output, canonical_bytes(blueprint))
+            atomic_write(source_output, canonical_bytes(source_map))
+            print(json.dumps({"status": "PASS", "blueprint": str(output), "source_map": str(source_output)}, sort_keys=True))
+            return 0
+
+        if args.command == "diff":
+            emit_json(structural_diff(args.left.resolve(), args.right.resolve()), args.output)
+            return 0
+
+        if args.command in {"materials", "layers", "fingerprint"}:
+            blueprint_path = args.blueprint.resolve()
+            result = {
+                "materials": inspect_materials,
+                "layers": inspect_layers,
+                "fingerprint": structural_fingerprint,
+            }[args.command](blueprint_path)
+            emit_json(result, args.output)
+            return 0
 
         blueprint_path = args.blueprint.resolve()
         ir_path, structure_path, receipt_path, preview_dir = default_paths(blueprint_path)
