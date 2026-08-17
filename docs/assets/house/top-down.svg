@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="434" viewBox="0 0 780 434">
+<title>wayfarers_hearth_house top-down preview</title>
+<desc>Highest occupied cell at each X/Z coordinate; explicit air is omitted from the roof projection.</desc>
+<rect width="100%" height="100%" fill="#f3f0e8"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#182028">
+<text x="64" y="35" font-size="22" font-weight="700">aionbound:drafts/wayfarers_hearth_house</text>
+<text x="64" y="61" font-size="13">TOP DOWN · size 30×22×32 · occupied 4,072 · air 1,724 · void 15,324</text>
+<rect x="154" y="88" width="63" height="9" fill="#7a7771"/>
+<rect x="154" y="97" width="45" height="9" fill="#7a7771"/>
+<rect x="199" y="97" width="9" height="9" fill="#dda744"/>
+<rect x="208" y="97" width="9" height="9" fill="#7a7771"/>
+<rect x="154" y="106" width="63" height="9" fill="#7a7771"/>
+<rect x="118" y="115" width="144" height="9" fill="#8b6740"/>
+<rect x="100" y="124" width="18" height="9" fill="#493425"/>
+<rect x="118" y="124" width="144" height="9" fill="#8b6740"/>
+<rect x="118" y="133" width="144" height="9" fill="#8b6740"/>
+<rect x="118" y="142" width="144" height="9" fill="#8b6740"/>
+<rect x="100" y="151" width="180" height="9" fill="#98594d"/>
+<rect x="100" y="160" width="180" height="9" fill="#98594d"/>
+<rect x="100" y="169" width="180" height="9" fill="#98594d"/>
+<rect x="100" y="178" width="180" height="9" fill="#98594d"/>
+<rect x="280" y="178" width="27" height="9" fill="#8b6740"/>
+<rect x="100" y="187" width="180" height="9" fill="#98594d"/>
+<rect x="280" y="187" width="27" height="9" fill="#8b6740"/>
+<rect x="100" y="196" width="180" height="9" fill="#98594d"/>
+<rect x="280" y="196" width="27" height="9" fill="#8b6740"/>
+<rect x="91" y="205" width="36" height="9" fill="#868b8b"/>
+<rect x="127" y="205" width="153" height="9" fill="#98594d"/>
+<rect x="280" y="205" width="27" height="9" fill="#8b6740"/>
+<rect x="91" y="214" width="36" height="9" fill="#868b8b"/>
+<rect x="127" y="214" width="153" height="9" fill="#98594d"/>
+<rect x="280" y="214" width="27" height="9" fill="#8b6740"/>
+<rect x="91" y="223" width="36" height="9" fill="#868b8b"/>
+<rect x="127" y="223" width="153" height="9" fill="#98594d"/>
+<rect x="280" y="223" width="27" height="9" fill="#8b6740"/>
+<rect x="91" y="232" width="36" height="9" fill="#868b8b"/>
+<rect x="127" y="232" width="153" height="9" fill="#98594d"/>
+<rect x="280" y="232" width="27" height="9" fill="#8b6740"/>
+<rect x="73" y="241" width="9" height="9" fill="#737a78"/>
+<rect x="100" y="241" width="180" height="9" fill="#98594d"/>
+<rect x="280" y="241" width="27" height="9" fill="#8b6740"/>
+<rect x="64" y="250" width="36" height="9" fill="#7a7771"/>
+<rect x="100" y="250" width="180" height="9" fill="#98594d"/>
+<rect x="64" y="259" width="36" height="9" fill="#7a7771"/>
+<rect x="100" y="259" width="180" height="9" fill="#98594d"/>
+<rect x="64" y="268" width="36" height="9" fill="#7a7771"/>
+<rect x="100" y="268" width="180" height="9" fill="#98594d"/>
+<rect x="73" y="277" width="207" height="9" fill="#98594d"/>
+<rect x="73" y="286" width="207" height="9" fill="#98594d"/>
+<rect x="73" y="295" width="207" height="9" fill="#98594d"/>
+<rect x="73" y="304" width="135" height="9" fill="#98594d"/>
+<rect x="208" y="304" width="54" height="9" fill="#868b8b"/>
+<rect x="73" y="313" width="135" height="9" fill="#98594d"/>
+<rect x="208" y="313" width="54" height="9" fill="#868b8b"/>
+<rect x="73" y="322" width="135" height="9" fill="#98594d"/>
+<rect x="73" y="331" width="135" height="9" fill="#98594d"/>
+<rect x="73" y="340" width="135" height="9" fill="#98594d"/>
+<rect x="73" y="349" width="135" height="9" fill="#98594d"/>
+<rect x="73" y="358" width="135" height="9" fill="#98594d"/>
+<rect x="109" y="367" width="54" height="9" fill="#7a7771"/>
+<rect x="64" y="88" width="270" height="288" fill="none" stroke="#343a40" stroke-width="1"/>
+<path d="M136 88V376" stroke="#1f2937" stroke-opacity="0.13"/>
+<path d="M208 88V376" stroke="#1f2937" stroke-opacity="0.13"/>
+<path d="M280 88V376" stroke="#1f2937" stroke-opacity="0.13"/>
+<path d="M64 160H334" stroke="#1f2937" stroke-opacity="0.13"/>
+<path d="M64 232H334" stroke="#1f2937" stroke-opacity="0.13"/>
+<path d="M64 304H334" stroke="#1f2937" stroke-opacity="0.13"/>
+<circle cx="185.5" cy="101.5" r="4.32" fill="none" stroke="#e11d48" stroke-width="2"/>
+<circle cx="185.5" cy="101.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="190.5" y="96.5" font-size="10">approach</text>
+<circle cx="167.5" cy="182.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="172.5" y="177.5" font-size="10">bedroom</text>
+<circle cx="239.5" cy="236.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="244.5" y="231.5" font-size="10">dining</text>
+<circle cx="221.5" cy="227.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="226.5" y="222.5" font-size="10">gallery</text>
+<circle cx="185.5" cy="218.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="190.5" y="213.5" font-size="10">hearth</text>
+<circle cx="212.5" cy="299.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="217.5" y="294.5" font-size="10">kitchen</text>
+<circle cx="113.5" cy="317.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="118.5" y="312.5" font-size="10">pantry</text>
+<circle cx="185.5" cy="146.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="190.5" y="141.5" font-size="10">porch</text>
+<circle cx="140.5" cy="362.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="145.5" y="357.5" font-size="10">rear_exit</text>
+<circle cx="149.5" cy="254.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="154.5" y="249.5" font-size="10">stair_bottom</text>
+<circle cx="284.5" cy="200.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="289.5" y="195.5" font-size="10">study</text>
+<circle cx="194.5" cy="272.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="199.5" y="267.5" font-size="10">upper_landing</text>
+<circle cx="185.5" cy="182.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="190.5" y="177.5" font-size="10">vestibule</text>
+<circle cx="86.5" cy="263.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="91.5" y="258.5" font-size="10">west_return</text>
+<circle cx="167.5" cy="317.5" r="2.88" fill="#ffe66d" stroke="#111827"/>
+<text x="172.5" y="312.5" font-size="10">workshop</text>
+<text x="64" y="78" font-size="12" font-weight="700">NORTH</text>
+<text x="199.0" y="406" text-anchor="middle" font-size="11">X → · Z ↓ · red ring = origin</text>
+<text x="362" y="88" font-size="16" font-weight="700">Expanded palette by block</text>
+<text x="362" y="111" font-size="11">Counts include all authored occupied/air cells.</text>
+<rect x="362" y="128" width="13" height="13" fill="#d7eef7" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="139" font-size="11">minecraft:air  × 1,724</text>
+<rect x="362" y="147" width="13" height="13" fill="hsl(3,50%,51%)" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="158" font-size="11">minecraft:bookshelf  × 32</text>
+<rect x="362" y="166" width="13" height="13" fill="#98594d" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="177" font-size="11">minecraft:brick_block  × 805</text>
+<rect x="362" y="185" width="13" height="13" fill="#737a78" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="196" font-size="11">minecraft:cobblestone  × 896</text>
+<rect x="362" y="204" width="13" height="13" fill="#493425" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="215" font-size="11">minecraft:dark_oak_log  × 151</text>
+<rect x="362" y="223" width="13" height="13" fill="#9ecbd1" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="234" font-size="11">minecraft:glass  × 33</text>
+<rect x="362" y="242" width="13" height="13" fill="hsl(157,28%,55%)" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="253" font-size="11">minecraft:gold_block  × 6</text>
+<rect x="362" y="261" width="13" height="13" fill="#7a7771" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="272" font-size="11">minecraft:gravel  × 55</text>
+<rect x="362" y="280" width="13" height="13" fill="#3f4850" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="291" font-size="11">minecraft:iron_bars  × 4</text>
+<rect x="362" y="299" width="13" height="13" fill="#dda744" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="310" font-size="11">minecraft:lantern  × 22</text>
+<rect x="362" y="318" width="13" height="13" fill="#8b6740" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="329" font-size="11">minecraft:planks  × 395</text>
+<rect x="362" y="337" width="13" height="13" fill="#868b8b" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="348" font-size="11">minecraft:stone  × 52</text>
+<rect x="362" y="356" width="13" height="13" fill="#868b8b" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="367" font-size="11">minecraft:stonebrick  × 1,611</text>
+<rect x="362" y="375" width="13" height="13" fill="#b7a98d" stroke="#475569" stroke-width="0.5"/>
+<text x="382" y="386" font-size="11">minecraft:wool  × 10</text>
+</g>
+</svg>

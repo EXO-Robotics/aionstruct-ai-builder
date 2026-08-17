@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="AIONSTRUCT AI Builder">
+  <rect width="640" height="160" rx="24" fill="#252B2F"/>
+  <g transform="translate(24 20)">
+    <path fill="#D58A52" d="m60 0 56 30-56 30L4 30Z"/>
+    <path fill="#9A4F31" d="m4 30 56 30v60L4 90Z"/>
+    <path fill="#693A2B" d="m116 30-56 30v60l56-30Z"/>
+    <path fill="none" stroke="#F4E7D0" stroke-width="6" d="m30 44 30 16 30-16M60 60v34"/>
+  </g>
+  <text x="170" y="72" fill="#F4E7D0" font-family="system-ui,sans-serif" font-size="42" font-weight="700">AIONSTRUCT</text>
+  <text x="172" y="112" fill="#D58A52" font-family="system-ui,sans-serif" font-size="26">AI BUILDER</text>
+</svg>

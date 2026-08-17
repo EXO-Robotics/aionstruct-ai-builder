@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121514" />
+    <meta
+      name="description"
+      content="AIONSTRUCT is an open-source, editorless toolkit for AI-assisted Minecraft Bedrock structure design, analysis, preview, and compilation."
+    />
+    <meta property="og:title" content="AIONSTRUCT — Structures begin as evidence" />
+    <meta
+      property="og:description"
+      content="Design, inspect, and compile Minecraft Bedrock structures before opening the game."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/house/engineering-board.png" />
+    <title>AIONSTRUCT — AI-assisted Bedrock structures</title>
+    <link rel="icon" href="assets/aionstruct-logo.svg" type="image/svg+xml" />
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="#top" aria-label="AIONSTRUCT home">
+        <span class="wordmark-mark" aria-hidden="true">A</span>
+        <span>AIONSTRUCT</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#builds">Builds</a>
+        <a href="#method">Method</a>
+        <a class="nav-source" href="https://github.com/EXO-Robotics/aionstruct-ai-builder">View source ↗</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true" data-parallax>
+          <figure class="hero-castle">
+            <img src="assets/castle/engineering-board.png" alt="" />
+          </figure>
+          <figure class="hero-house">
+            <img src="assets/house/engineering-board.png" alt="" />
+          </figure>
+          <span class="datum datum-x">X / 64</span>
+          <span class="datum datum-y">Y / 48</span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Open source · Minecraft Bedrock · Codex plugin</p>
+          <h1 id="hero-title">Structures begin<br />as <em>evidence.</em></h1>
+          <p class="hero-lede">
+            Design castles and houses as strict data. Inspect every route, light source,
+            and voxel before Minecraft opens.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#builds">Explore the builds</a>
+            <a class="text-link" href="#install">Install the plugin <span>↓</span></a>
+          </div>
+        </div>
+
+        <div class="hero-proof" aria-label="Project proof summary">
+          <p><span>01</span> Declarative blueprints</p>
+          <p><span>02</span> Quality analysis</p>
+          <p><span>03</span> Direct .mcstructure</p>
+        </div>
+      </section>
+
+      <section class="manifesto reveal" aria-label="AIONSTRUCT introduction">
+        <p class="section-index">00 / Premise</p>
+        <p class="manifesto-copy">
+          Minecraft Editor is useful. It should not be mandatory. AIONSTRUCT lets an AI
+          reason about architecture in a finite blueprint, then turns that intent into a
+          structure file with inspection artifacts attached.
+        </p>
+        <p class="evidence-note">
+          Every image below is a source-bound engineering preview. Runtime placement and
+          client appearance remain separate proof gates.
+        </p>
+      </section>
+
+      <section class="builds" id="builds" aria-labelledby="builds-title">
+        <div class="section-heading reveal">
+          <p class="section-index">01 / Field studies</p>
+          <h2 id="builds-title">Two structures.<br />One improving method.</h2>
+        </div>
+
+        <article class="case-study case-castle reveal" id="castle">
+          <div class="case-copy">
+            <p class="case-number">Study A · 64 × 48 × 64</p>
+            <h3>Grand Stone Castle</h3>
+            <p class="case-deck">
+              A traversable fortress shell with a moat, drawbridge, six-tower skyline,
+              central keep, wall walks, and named interior destinations.
+            </p>
+
+            <dl class="metrics">
+              <div><dt>39,450</dt><dd>placed blocks</dd></div>
+              <div><dt>14 / 14</dt><dd>required anchors reachable</dd></div>
+              <div><dt>Stable BDS</dt><dd>placement + restart proof</dd></div>
+            </dl>
+
+            <div class="finding">
+              <p class="finding-label">What the tooling found</p>
+              <p>
+                Traversal passed, but the first lighting plan covered only 212 of 4,818
+                walkable cells in the optimistic model. Two of four lanterns also lacked
+                local support. The preview made the playtest feedback—dim and inconsistent—
+                measurable before another build.
+              </p>
+            </div>
+          </div>
+
+          <div class="case-visual visual-frame" data-gallery="castle">
+            <img
+              class="gallery-image"
+              src="assets/castle/engineering-board.png"
+              alt="Four-view engineering board of the Grand Stone Castle, including exterior and cutaway views"
+              width="1452"
+              height="1486"
+            />
+            <div class="visual-caption">
+              <span data-gallery-label>Exact expanded IR · four-view engineering board</span>
+              <div class="gallery-controls" aria-label="Castle image selection">
+                <button class="is-active" type="button" aria-pressed="true" data-image="assets/castle/engineering-board.png" data-label="Exact expanded IR · four-view engineering board">3D</button>
+                <button type="button" aria-pressed="false" data-image="assets/castle/light-heatmap.png" data-label="Optimistic floor-light estimate · runtime sampling still required">Light</button>
+                <button type="button" aria-pressed="false" data-image="assets/castle/floors.svg" data-label="Source-bound floor program sheet">Floors</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="iteration-line reveal" aria-label="Iteration from castle to house">
+          <span>diagnose</span><i></i><span>rewrite the quality contract</span><i></i><span>rebuild</span>
+        </div>
+
+        <article class="case-study case-house reveal" id="house">
+          <div class="case-copy">
+            <p class="case-number">Study B · 27 × 21 × 32 authored bounds</p>
+            <h3>Wayfarer’s Hearth</h3>
+            <p class="case-deck">
+              A multi-level roadside house designed from scratch around readable room
+              identities, connected circulation, facade depth, support-safe fixtures, and
+              a deliberate light budget.
+            </p>
+
+            <dl class="metrics">
+              <div><dt>4,072</dt><dd>placed blocks</dd></div>
+              <div><dt>490 / 490</dt><dd>walkable cells static-lit ≥ 8</dd></div>
+              <div><dt>22 / 22</dt><dd>supported lanterns</dd></div>
+            </dl>
+
+            <div class="finding finding-pass">
+              <p class="finding-label">What changed</p>
+              <p>
+                The house treats quality as input, not cleanup: fifteen navigation anchors,
+                distinct rooms, a projecting porch, layered gables, cutaway checks, and a
+                fully covered static floor-light target. Client review is still required.
+              </p>
+            </div>
+          </div>
+
+          <div class="case-visual visual-frame" data-gallery="house">
+            <img
+              class="gallery-image"
+              src="assets/house/engineering-board.png"
+              alt="Four-view engineering board of Wayfarer's Hearth house, including exterior and cutaway views"
+              width="792"
+              height="946"
+            />
+            <div class="visual-caption">
+              <span data-gallery-label>Exact expanded IR · four-view engineering board</span>
+              <div class="gallery-controls" aria-label="House image selection">
+                <button class="is-active" type="button" aria-pressed="true" data-image="assets/house/engineering-board.png" data-label="Exact expanded IR · four-view engineering board">3D</button>
+                <button type="button" aria-pressed="false" data-image="assets/house/light-heatmap.png" data-label="Static floor-light target · 490 of 490 cells at or above 8">Light</button>
+                <button type="button" aria-pressed="false" data-image="assets/house/silhouettes.svg" data-label="Source-bound four-elevation sheet">Elevation</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="method" id="method" aria-labelledby="method-title">
+        <div class="method-intro reveal">
+          <p class="section-index">02 / The method</p>
+          <h2 id="method-title">An inspectable path<br />from words to world.</h2>
+          <p>
+            The AI works inside a bounded format. Each stage produces evidence the next
+            stage can verify—without pretending a static check is a Minecraft playtest.
+          </p>
+        </div>
+
+        <ol class="pipeline reveal">
+          <li>
+            <span>01</span>
+            <div><h3>Describe</h3><p>Write an architectural brief with rooms, routes, silhouette, materials, and lighting intent.</p></div>
+          </li>
+          <li>
+            <span>02</span>
+            <div><h3>Author</h3><p>Express the build as strict, finite JSON operations—boxes, walls, lines, stairs, openings, anchors.</p></div>
+          </li>
+          <li>
+            <span>03</span>
+            <div><h3>Inspect</h3><p>Expand to final voxels and render 3D boards, floors, elevations, cutaways, and light maps.</p></div>
+          </li>
+          <li>
+            <span>04</span>
+            <div><h3>Gate</h3><p>Fail on blocked routes, narrow apertures, unsupported lights, stale previews, or missed quality targets.</p></div>
+          </li>
+          <li>
+            <span>05</span>
+            <div><h3>Compile</h3><p>Write deterministic Bedrock bytes, reopen every voxel independently, then qualify exact bytes in BDS.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="install" id="install" aria-labelledby="install-title">
+        <div class="install-copy reveal">
+          <p class="section-index">03 / Build with it</p>
+          <h2 id="install-title">Give your AI<br />a building discipline.</h2>
+          <p>
+            Install the Codex plugin or bootstrap the standalone toolkit. The repository is
+            MIT licensed and includes the complete Wayfarer’s Hearth example.
+          </p>
+          <a class="button button-light" href="https://github.com/EXO-Robotics/aionstruct-ai-builder">Open the repository ↗</a>
+        </div>
+
+        <div class="terminal reveal" aria-label="Codex plugin installation commands">
+          <div class="terminal-bar"><span></span><span></span><span></span><b>terminal</b></div>
+          <pre><code><span class="prompt">$</span> codex plugin marketplace add \
+  EXO-Robotics/aionstruct-ai-builder --ref main
+
+<span class="prompt">$</span> codex plugin add \
+  aionstruct-ai-builder@aionstruct
+
+<span class="comment"># Start a new task, then ask:</span>
+Use $build-aionstruct-structures to design
+and validate an original Bedrock inn.</code></pre>
+          <button class="copy-button" type="button" data-copy aria-label="Copy installation commands">Copy commands</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="wordmark" href="#top"><span class="wordmark-mark" aria-hidden="true">A</span><span>AIONSTRUCT</span></a>
+      <p>Original tooling and structures · MIT License</p>
+      <p>Minecraft is a trademark of Microsoft. Not affiliated with Microsoft or Mojang.</p>
+    </footer>
+  </body>
+</html>
