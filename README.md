@@ -2,6 +2,8 @@
 
 A Codex plugin and standalone offline toolkit for AI-assisted Minecraft Bedrock structure development—without Minecraft Editor and without driving a player to place blocks.
 
+**[Explore the castle and house showcase →](https://exo-robotics.github.io/aionstruct-ai-builder/)**
+
 ![Wayfarer's Hearth engineering board](plugins/aionstruct-ai-builder/assets/screenshots/wayfarers-hearth-board.png)
 
 ## What it does
