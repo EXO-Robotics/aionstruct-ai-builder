@@ -1,4 +1,4 @@
 interface:
   display_name: "AIONSTRUCT AI Builder"
-  short_description: "Plan and compile Bedrock structures offline"
-  default_prompt: "Use $build-aionstruct-structures to author a semantic Plan, lower it deterministically, validate, preview, and compile an original Minecraft Bedrock structure."
+  short_description: "Plan, audit, and compile Bedrock structures offline"
+  default_prompt: "Use $build-aionstruct-structures to author semantic Plans, audit portfolio uniqueness and purpose, validate, preview, and compile original Minecraft Bedrock structures."

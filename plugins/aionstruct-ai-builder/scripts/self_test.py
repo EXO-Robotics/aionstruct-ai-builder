@@ -23,6 +23,15 @@ def run(project: Path, *args: str) -> None:
         raise RuntimeError(f"command failed: {' '.join(args)}\n{completed.stdout}\n{completed.stderr}")
 
 
+def run_expect_failure(project: Path, *args: str) -> None:
+    completed = subprocess.run(
+        [sys.executable, "tools/aionstruct.py", *args], cwd=project,
+        check=False, capture_output=True, text=True,
+    )
+    if completed.returncode == 0:
+        raise RuntimeError(f"command unexpectedly passed: {' '.join(args)}\n{completed.stdout}")
+
+
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -62,7 +71,14 @@ def main() -> int:
         run(project, "materials", str(lowered), "--output", "reports/semantic_house.materials.json")
         run(project, "layers", str(lowered), "--output", "reports/semantic_house.layers.json")
         run(project, "fingerprint", str(lowered), "--output", "reports/semantic_house.fingerprint.json")
+        run(project, "topology", str(lowered), "--output", "reports/semantic_house.topology.json")
         run(project, "diff", str(lowered), str(lowered), "--output", "reports/semantic_house.diff.json")
+        run(
+            project, "portfolio", blueprint, str(lowered),
+            "--contract", "aionstruct/examples/example_portfolio.aionportfolio.json",
+            "--output", "reports/example_portfolio.audit.json",
+        )
+        run_expect_failure(project, "portfolio", blueprint, blueprint)
         run(project, "build", blueprint, "--contract", contract)
         structure = project / "dist" / "wayfarers_hearth_house.mcstructure"
         first = digest(structure)

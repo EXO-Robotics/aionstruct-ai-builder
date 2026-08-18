@@ -11,6 +11,8 @@ A Codex plugin and standalone offline toolkit for AI-assisted Minecraft Bedrock 
 - Authors bounded semantic `Plan v1` components with stable IDs and explicit dependency order, then lowers them to the unchanged Blueprint v1 language.
 - Converts strict, finite JSON blueprints into deterministic final voxel IR.
 - Emits structured Plan diagnostics, hash-bound component source maps, material/layer inspections, canonical fingerprints, and structural diffs.
+- Audits whole structure portfolios for palette-swapped, translated, rotated, or reflected architectural clones while preserving explicit-air versus void distinctions.
+- Enforces optional purpose contracts answering why a player approaches, enters, and leaves changed, plus at least two architectural distinctness axes.
 - Checks traversal, full-depth apertures, stair clearance, fixture support, lighting coverage, material balance, and stale previews.
 - Renders top-down, floor, elevation, isometric, cutaway, and static-light engineering views.
 - Compiles little-endian `.mcstructure` bytes using Bedrock's Z-fastest index order.
@@ -81,6 +83,8 @@ python3 tools/aionstruct.py build <blueprint> --contract <quality-contract>
 python3 tools/aionstruct.py materials <blueprint>
 python3 tools/aionstruct.py layers <blueprint>
 python3 tools/aionstruct.py fingerprint <blueprint>
+python3 tools/aionstruct.py topology <blueprint>
+python3 tools/aionstruct.py portfolio <blueprints...> --contract <portfolio-contract>
 python3 tools/aionstruct.py diff <left-blueprint> <right-blueprint>
 ```
 
@@ -90,7 +94,7 @@ Plan v1 applies the semantic-plan and dependency-graph pattern documented by [Cr
 
 ## Evidence boundary
 
-A successful Plan lowering proves semantic validation, dependency ordering, Blueprint validation, and hash-bound source mapping. A successful offline build additionally proves deterministic expansion, static spatial analysis, optimistic light coverage, deterministic encoding, and independent decode equality. Neither proves BDS placement, runtime light, mob spawning, client appearance, terrain fit, multiplayer behavior, console compatibility, or release readiness.
+A successful Plan lowering proves semantic validation, dependency ordering, Blueprint validation, and hash-bound source mapping. A passing portfolio audit proves only static topology distinctness and completeness of authored purpose answers; it does not prove visual quality or memorability. A successful offline build additionally proves deterministic expansion, static spatial analysis, optimistic light coverage, deterministic encoding, and independent decode equality. None of these proves BDS placement, runtime light, mob spawning, client appearance, terrain fit, multiplayer behavior, console compatibility, or release readiness.
 
 Qualify exact compiled bytes separately in a disposable, digest-pinned Bedrock Dedicated Server before making runtime claims.
 

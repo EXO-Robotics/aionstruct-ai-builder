@@ -24,7 +24,7 @@ from lib.mcstructure_reader import decode_mcstructure_file  # noqa: E402
 from render_aionstruct_preview import load_expanded_ir, write_preview  # noqa: E402
 
 
-TOOL_VERSION = "1.1.0"
+TOOL_VERSION = "1.2.0"
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -210,6 +210,156 @@ def structural_fingerprint(blueprint_path: Path) -> dict[str, Any]:
     }
 
 
+def _normalized_topology(cells: list[dict[str, Any]]) -> list[list[Any]]:
+    """Return the lexicographically smallest horizontal dihedral occupancy."""
+    classified = [
+        (cell["x"], cell["y"], cell["z"], "air" if cell["block"] == "minecraft:air" else "solid")
+        for cell in cells
+    ]
+    transforms = (
+        lambda x, z: (x, z), lambda x, z: (-z, x),
+        lambda x, z: (-x, -z), lambda x, z: (z, -x),
+        lambda x, z: (-x, z), lambda x, z: (x, -z),
+        lambda x, z: (z, x), lambda x, z: (-z, -x),
+    )
+    candidates: list[list[list[Any]]] = []
+    for transform in transforms:
+        transformed = []
+        for x, y, z, kind in classified:
+            transformed_x, transformed_z = transform(x, z)
+            transformed.append((transformed_x, y, transformed_z, kind))
+        if not transformed:
+            candidates.append([])
+            continue
+        minimum_x = min(row[0] for row in transformed)
+        minimum_y = min(row[1] for row in transformed)
+        minimum_z = min(row[2] for row in transformed)
+        candidates.append(sorted(
+            [[x - minimum_x, y - minimum_y, z - minimum_z, kind] for x, y, z, kind in transformed]
+        ))
+    return min(candidates, key=canonical_bytes)
+
+
+def topology_fingerprint(blueprint_path: Path) -> dict[str, Any]:
+    """Fingerprint geometry while ignoring block palette, translation, and X/Z dihedral orientation."""
+    ir = expand(load_validated(blueprint_path))
+    topology = _normalized_topology(ir["cells"])
+    bounds = [0, 0, 0]
+    if topology:
+        bounds = [
+            max(row[0] for row in topology) + 1,
+            max(row[1] for row in topology) + 1,
+            max(row[2] for row in topology) + 1,
+        ]
+    counts = Counter(row[3] for row in topology)
+    return {
+        "schema": "aionstruct.topology_fingerprint.v1",
+        "structure_id": ir["id"],
+        "algorithm": "sha256-normalized-xz-dihedral-air-solid-topology",
+        "sha256": sha256(canonical_bytes(topology)),
+        "normalized_bounds": bounds,
+        "solid_cells": counts["solid"],
+        "explicit_air_cells": counts["air"],
+        "void_semantics": "coordinates absent from the normalized explicit-cell set remain void",
+    }
+
+
+def portable_source_path(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return f"external/{path.name}"
+
+
+def portfolio_audit(blueprint_paths: list[Path], contract_path: Path | None = None) -> dict[str, Any]:
+    """Detect architectural clones and optionally enforce per-structure purpose contracts."""
+    rows = []
+    errors: list[dict[str, Any]] = []
+    seen_ids: set[str] = set()
+    for path in blueprint_paths:
+        exact = structural_fingerprint(path)
+        topology = topology_fingerprint(path)
+        structure_id = exact["structure_id"]
+        if structure_id in seen_ids:
+            errors.append({"code": "duplicate_structure_id", "structure_id": structure_id})
+        seen_ids.add(structure_id)
+        rows.append({
+            "structure_id": structure_id,
+            "path": portable_source_path(path),
+            "exact_sha256": exact["sha256"],
+            "topology_sha256": topology["sha256"],
+            "normalized_bounds": topology["normalized_bounds"],
+            "solid_cells": topology["solid_cells"],
+            "explicit_air_cells": topology["explicit_air_cells"],
+        })
+    groups: dict[str, list[str]] = {}
+    for row in rows:
+        groups.setdefault(row["topology_sha256"], []).append(row["structure_id"])
+    duplicate_groups = [
+        {"topology_sha256": digest, "structure_ids": sorted(ids)}
+        for digest, ids in sorted(groups.items()) if len(ids) > 1
+    ]
+    for group in duplicate_groups:
+        errors.append({"code": "duplicate_topology", **group})
+
+    contract_sha256 = None
+    if contract_path is not None:
+        contract_bytes = contract_path.read_bytes()
+        contract_sha256 = sha256(contract_bytes)
+        contract = json.loads(contract_bytes)
+        if not isinstance(contract, dict) or contract.get("schema") != "aionstruct.portfolio_contract.v1":
+            errors.append({"code": "invalid_contract_schema", "path": portable_source_path(contract_path)})
+        entries = contract.get("structures", []) if isinstance(contract, dict) else []
+        by_id: dict[str, dict[str, Any]] = {}
+        for index, entry in enumerate(entries if isinstance(entries, list) else []):
+            structure_id = entry.get("structure_id") if isinstance(entry, dict) else None
+            if not isinstance(structure_id, str) or structure_id in by_id:
+                errors.append({"code": "invalid_or_duplicate_contract_id", "index": index})
+                continue
+            by_id[structure_id] = entry
+        for structure_id in sorted(seen_ids - set(by_id)):
+            errors.append({"code": "missing_purpose_contract", "structure_id": structure_id})
+        for structure_id in sorted(set(by_id) - seen_ids):
+            errors.append({"code": "contract_structure_not_audited", "structure_id": structure_id})
+        allowed_axes = {"silhouette", "approach", "traversal", "function", "environmental_story"}
+        for structure_id in sorted(seen_ids & set(by_id)):
+            entry = by_id[structure_id]
+            purpose = entry.get("purpose", {})
+            if not isinstance(purpose, dict):
+                errors.append({"code": "invalid_purpose_object", "structure_id": structure_id})
+                purpose = {}
+            for field in ("walk_toward", "enter", "changes_after_departure"):
+                if not isinstance(purpose.get(field), str) or not purpose[field].strip():
+                    errors.append({"code": "missing_purpose_answer", "structure_id": structure_id, "field": field})
+            axes = entry.get("distinctness_axes", [])
+            if (
+                not isinstance(axes, list)
+                or len(set(axes)) < 2
+                or len(set(axes)) != len(axes)
+                or any(axis not in allowed_axes for axis in axes)
+            ):
+                errors.append({"code": "invalid_distinctness_axes", "structure_id": structure_id})
+
+    return {
+        "schema": "aionstruct.portfolio_audit.v1",
+        "status": "PASS" if not errors else "FAIL",
+        "algorithm": "palette-independent-translation-and-xz-dihedral-invariant",
+        "counts": {
+            "structures": len(rows),
+            "distinct_topologies": len(groups),
+            "duplicate_topology_groups": len(duplicate_groups),
+        },
+        "structures": sorted(rows, key=lambda row: row["structure_id"]),
+        "duplicate_topology_groups": duplicate_groups,
+        "contract": None if contract_path is None else {"path": portable_source_path(contract_path), "sha256": contract_sha256},
+        "errors": errors,
+        "proof_boundary": [
+            "static_final_ir_topology_and_authored_purpose_contract_only",
+            "not_visual_quality_gameplay_memorability_worldgen_or_runtime_proof",
+        ],
+    }
+
+
 def structural_diff(left_path: Path, right_path: Path) -> dict[str, Any]:
     left = expand(load_validated(left_path))
     right = expand(load_validated(right_path))
@@ -298,6 +448,13 @@ def main() -> int:
     fingerprint = sub.add_parser("fingerprint", help="hash canonical final structure content")
     fingerprint.add_argument("blueprint", type=Path)
     fingerprint.add_argument("--output", type=Path)
+    topology = sub.add_parser("topology", help="hash palette-independent geometry across horizontal rotations/reflections")
+    topology.add_argument("blueprint", type=Path)
+    topology.add_argument("--output", type=Path)
+    portfolio = sub.add_parser("portfolio", help="audit multiple blueprints for clone topology and purpose contracts")
+    portfolio.add_argument("blueprints", nargs="+", type=Path)
+    portfolio.add_argument("--contract", type=Path)
+    portfolio.add_argument("--output", type=Path)
     diff = sub.add_parser("diff", help="compare two expanded structures without modifying them")
     diff.add_argument("left", type=Path)
     diff.add_argument("right", type=Path)
@@ -341,12 +498,21 @@ def main() -> int:
             emit_json(structural_diff(args.left.resolve(), args.right.resolve()), args.output)
             return 0
 
-        if args.command in {"materials", "layers", "fingerprint"}:
+        if args.command == "portfolio":
+            report = portfolio_audit(
+                [path.resolve() for path in args.blueprints],
+                args.contract.resolve() if args.contract else None,
+            )
+            emit_json(report, args.output)
+            return 0 if report["status"] == "PASS" else 1
+
+        if args.command in {"materials", "layers", "fingerprint", "topology"}:
             blueprint_path = args.blueprint.resolve()
             result = {
                 "materials": inspect_materials,
                 "layers": inspect_layers,
                 "fingerprint": structural_fingerprint,
+                "topology": topology_fingerprint,
             }[args.command](blueprint_path)
             emit_json(result, args.output)
             return 0

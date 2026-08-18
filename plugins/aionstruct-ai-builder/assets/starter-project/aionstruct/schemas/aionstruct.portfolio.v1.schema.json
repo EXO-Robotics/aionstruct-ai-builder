@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aionstruct.portfolio.v1",
+  "title": "AIONSTRUCT Portfolio Purpose Contract v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "structures"],
+  "properties": {
+    "schema": {"const": "aionstruct.portfolio_contract.v1"},
+    "structures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["structure_id", "purpose", "distinctness_axes"],
+        "properties": {
+          "structure_id": {"type": "string", "pattern": "^[a-z0-9_.-]+:[a-z0-9_./-]+$"},
+          "purpose": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["walk_toward", "enter", "changes_after_departure"],
+            "properties": {
+              "walk_toward": {"type": "string", "minLength": 1, "maxLength": 2048},
+              "enter": {"type": "string", "minLength": 1, "maxLength": 2048},
+              "changes_after_departure": {"type": "string", "minLength": 1, "maxLength": 2048}
+            }
+          },
+          "distinctness_axes": {
+            "type": "array",
+            "minItems": 2,
+            "uniqueItems": true,
+            "items": {"enum": ["silhouette", "approach", "traversal", "function", "environmental_story"]}
+          }
+        }
+      }
+    }
+  }
+}

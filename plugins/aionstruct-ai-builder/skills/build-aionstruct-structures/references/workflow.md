@@ -17,6 +17,7 @@ aionstruct/
   examples/
   schemas/aionstruct.blueprint.v1.schema.json
   schemas/aionstruct.plan.v1.schema.json
+  schemas/aionstruct.portfolio.v1.schema.json
 tools/
   aionstruct.py
   aionstruct_plan.py
@@ -52,10 +53,15 @@ python3 tools/aionstruct.py build aionstruct/examples/wayfarers_hearth_house.aio
 python3 tools/aionstruct.py materials build/semantic_roadside_house.blueprint.json
 python3 tools/aionstruct.py layers build/semantic_roadside_house.blueprint.json
 python3 tools/aionstruct.py fingerprint build/semantic_roadside_house.blueprint.json
+python3 tools/aionstruct.py topology build/semantic_roadside_house.blueprint.json
+python3 tools/aionstruct.py portfolio first.blueprint.json second.blueprint.json \
+  --contract aionstruct/examples/example_portfolio.aionportfolio.json
 python3 tools/aionstruct.py diff left.blueprint.json right.blueprint.json
 ```
 
 `plan lower` writes an ordinary Blueprint v1 file and a hash-bound component-to-operation source map. `compile` writes deterministic `.mcstructure` bytes, reopens them through an independent NBT reader, compares the full volume, and writes a receipt. Neither command contacts Minecraft.
+
+`portfolio` compares final explicit-cell topology after removing palette identity, translation, and horizontal rotation/reflection. It preserves explicit air as distinct from absent void. Use it to catch recolored or reoriented clones, not to claim visual quality or player memorability.
 
 ## Constraint contract
 

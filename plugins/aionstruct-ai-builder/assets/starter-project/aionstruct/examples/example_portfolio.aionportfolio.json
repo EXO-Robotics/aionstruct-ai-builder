@@ -1,0 +1,23 @@
+{
+  "schema": "aionstruct.portfolio_contract.v1",
+  "structures": [
+    {
+      "structure_id": "example:drafts/semantic_roadside_house",
+      "purpose": {
+        "walk_toward": "A compact roadside silhouette promises shelter and a readable entrance from the path.",
+        "enter": "The player can inspect a complete semantic room-and-roof composition at human scale.",
+        "changes_after_departure": "The example teaches how Plan components lower into editable Blueprint operations and provenance."
+      },
+      "distinctness_axes": ["silhouette", "function"]
+    },
+    {
+      "structure_id": "example:drafts/wayfarers_hearth_house",
+      "purpose": {
+        "walk_toward": "The broad gabled inn, porch, and chimney read as a major inhabited roadside destination.",
+        "enter": "Multiple floors, service rooms, galleries, and exits demonstrate traversal and lighting contracts.",
+        "changes_after_departure": "The example provides a reusable reference for quality-gated multi-level structure authoring."
+      },
+      "distinctness_axes": ["silhouette", "traversal", "environmental_story"]
+    }
+  ]
+}

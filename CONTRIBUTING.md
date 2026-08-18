@@ -18,6 +18,8 @@ Requirements:
 - Add a regression test for compiler, schema, traversal, support, or rendering changes.
 - Preserve Blueprint v1 and IR v1 canonical behavior when extending the semantic Plan layer.
 - Require deterministic dependency ordering and complete Plan-to-Blueprint source-map coverage.
+- Preserve palette-independent topology fingerprint invariance and explicit-air versus void distinction.
+- Require purpose-contract and duplicate-topology tests when extending portfolio analysis.
 - Never weaken a quality contract merely to make a structure pass.
 - Keep BDS, client, gameplay, world-generation, and console claims separate from static evidence.
 - Do not add copyrighted Minecraft assets or copied third-party structure layouts.

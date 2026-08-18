@@ -1,6 +1,6 @@
 ---
 name: build-aionstruct-structures
-description: Plan, design, audit, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline. Use for AI Minecraft development involving semantic rooms and dependencies, houses, castles, ruins, dungeons, traversal, supported lighting, explicit-air versus void behavior, deterministic .mcstructure output, or pre-BDS structure review without Minecraft Editor.
+description: Plan, design, audit portfolios, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline. Use for AI Minecraft development involving semantic rooms, houses, castles, ruins, dungeons, clone detection, exploration-purpose contracts, traversal, supported lighting, explicit-air versus void behavior, deterministic .mcstructure output, or pre-BDS review without Minecraft Editor.
 ---
 
 # Build AIONSTRUCT Structures
@@ -18,7 +18,7 @@ python3 <plugin-root>/scripts/bootstrap_project.py <new-project-directory>
 ```
 
 4. Run `python3 tools/aionstruct.py doctor` in the project. Install `requirements.txt` only when PNG previews are required and the dependency is missing.
-5. Read [workflow.md](references/workflow.md) before authoring. Use [plan-format.md](references/plan-format.md) for new semantic designs. Read [blueprint-format.md](references/blueprint-format.md) when inspecting lowered source or maintaining a legacy Blueprint. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level builds. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
+5. Read [workflow.md](references/workflow.md) before authoring. Use [plan-format.md](references/plan-format.md) for new semantic designs. Read [portfolio-audits.md](references/portfolio-audits.md) when producing or reviewing multiple structures. Read [blueprint-format.md](references/blueprint-format.md) when inspecting lowered source or maintaining a legacy Blueprint. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level builds. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
 
 ## Authoring loop
 
@@ -28,8 +28,9 @@ python3 <plugin-root>/scripts/bootstrap_project.py <new-project-directory>
 4. Require every intended walkable cell and anchor to share the declared traversal component. Verify full-depth apertures, stair support/headroom/landings, and support-sensitive fixtures.
 5. Render core SVGs, the isometric engineering board, and the static lighting heatmap. Review massing and cutaways visually.
 6. Run the static quality contract. Fix failed gates in the source; do not weaken contracts to make a design pass.
-7. Compile `.mcstructure` bytes and require independent full-volume decode equality.
-8. Qualify the exact artifact separately in a fresh, digest-pinned, portless BDS fixture before claiming runtime placement or persistence.
+7. For a multi-structure slate, run the portfolio audit and redesign any unintended topology clone; palette changes alone do not count as a new layout.
+8. Compile `.mcstructure` bytes and require independent full-volume decode equality.
+9. Qualify the exact artifact separately in a fresh, digest-pinned, portless BDS fixture before claiming runtime placement or persistence.
 
 Use the packaged end-to-end command after the source and contract exist:
 
