@@ -19,14 +19,26 @@ from aionstruct import (  # noqa: E402
     structural_fingerprint,
     topology_fingerprint,
 )
+from aionstruct_plan import load_plan, lower_plan  # noqa: E402
 
 
 BLUEPRINT = ROOT / "aionstruct" / "examples" / "wayfarers_hearth_house.aionstruct.json"
-SEMANTIC = ROOT / "build" / "semantic_roadside_house.blueprint.json"
+SEMANTIC_PLAN = ROOT / "aionstruct" / "examples" / "semantic_roadside_house.aionplan.json"
 PORTFOLIO = ROOT / "aionstruct" / "examples" / "example_portfolio.aionportfolio.json"
 
 
 class InspectionTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.generated = tempfile.TemporaryDirectory(prefix="aionstruct-inspection-tests-")
+        cls.semantic = Path(cls.generated.name) / "semantic_roadside_house.blueprint.json"
+        blueprint, _source_map = lower_plan(load_plan(SEMANTIC_PLAN))
+        cls.semantic.write_text(json.dumps(blueprint), encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.generated.cleanup()
+
     def test_material_and_layer_reports_are_complete(self) -> None:
         materials = inspect_materials(BLUEPRINT)
         layers = inspect_layers(BLUEPRINT)
@@ -85,7 +97,7 @@ class InspectionTests(unittest.TestCase):
         self.assertEqual(_normalized_topology(cells), _normalized_topology(transformed))
 
     def test_portfolio_passes_distinct_examples_and_fails_a_clone(self) -> None:
-        report = portfolio_audit([BLUEPRINT, SEMANTIC], PORTFOLIO)
+        report = portfolio_audit([BLUEPRINT, self.semantic], PORTFOLIO)
         self.assertEqual(report["status"], "PASS")
         self.assertEqual(report["counts"]["distinct_topologies"], 2)
         clone = json.loads(BLUEPRINT.read_text(encoding="utf-8"))
@@ -110,7 +122,7 @@ class InspectionTests(unittest.TestCase):
         with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8") as handle:
             json.dump(contract, handle)
             handle.flush()
-            report = portfolio_audit([BLUEPRINT, SEMANTIC], Path(handle.name))
+            report = portfolio_audit([BLUEPRINT, self.semantic], Path(handle.name))
         codes = {error["code"] for error in report["errors"]}
         self.assertEqual(report["status"], "FAIL")
         self.assertIn("invalid_purpose_object", codes)
