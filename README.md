@@ -19,8 +19,24 @@ A Codex plugin and standalone offline toolkit for AI-assisted Minecraft Bedrock 
 - Reopens and compares every compiled voxel with an independent NBT reader.
 - Preserves explicit air separately from structure void.
 - Keeps static, BDS, client, gameplay, world-generation, and console evidence separate.
+- Includes a field guide for translating semantic plans into Unreal qualification work: UE MCP safety, GLB/FBX transforms, UCX collision, fixed-scale lighting heatmaps, and Grok-assisted art direction.
 
 The repository includes the multi-level **Wayfarer's Hearth House** as an editable reference project.
+
+## Unreal Engine adaptation field guide
+
+AIONSTRUCT's deterministic compiler remains Bedrock-specific. The skill now also documents how to carry its semantic rooms, routes, apertures, anchors, layers, lighting zones, and proof discipline into a separate Unreal Engine asset pipeline.
+
+The Unreal guide covers:
+
+- converting Grok concept artwork into dimensioned, layered, testable build data;
+- tester-world iteration before production-map promotion;
+- Blender-to-Unreal coordinate, pivot, marker, and UCX collision pitfalls;
+- guarded MCP mutation, independent saved readback, PIE lifecycle polling, ledgers, and map/save immutability;
+- global-light inventory, locked exposure, zone-based analytical lux fields, fixed-scale heatmaps, and paired editor/PIE visual review;
+- explicit boundaries between semantic intent, imported assets, runtime audits, and human traversal or gameplay proof.
+
+Read [the Unreal Engine, MCP, lighting, and Grok field guide](plugins/aionstruct-ai-builder/skills/build-aionstruct-structures/references/unreal-engine-mcp-and-grok.md). It is workflow guidance, not an Unreal exporter or a claim that `.mcstructure` output is compatible with Unreal.
 
 ## Install in Codex
 
