@@ -20,7 +20,4 @@ jobs:
       - run: python plugins/aionstruct-ai-builder/scripts/package_plugin.py --output /tmp/aionstruct-ai-builder.zip
       - run: python plugins/aionstruct-ai-builder/scripts/package_plugin.py --output /tmp/aionstruct-ai-builder-second.zip
       - run: cmp /tmp/aionstruct-ai-builder.zip /tmp/aionstruct-ai-builder-second.zip
-      - run: python plugins/ironstruct-ue-builder/scripts/package_plugin.py --output /tmp/ironstruct-ue-builder.zip
-      - run: python plugins/ironstruct-ue-builder/scripts/package_plugin.py --output /tmp/ironstruct-ue-builder-second.zip
-      - run: cmp /tmp/ironstruct-ue-builder.zip /tmp/ironstruct-ue-builder-second.zip
       - run: python scripts/validate_site.py

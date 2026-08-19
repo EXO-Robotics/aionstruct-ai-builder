@@ -2,11 +2,8 @@
 
 ## Unreleased
 
-- Add IronStruct as a separate Unreal-focused plugin and skill, independent from AIONSTRUCT's Bedrock package, schemas, compiler, and skill.
-- Add an IronStruct field guide covering semantic-plan translation, Blender/GLB/FBX transforms, UCX collision, guarded MCP mutation and receipts, PIE lifecycle evidence, runtime-proxy duplication, and map/save immutability.
-- Document fixed-scale, zone-based Unreal lighting heatmaps; global-light and exposure inventory; joint lumen/radius calibration; and the boundary between analytical lux estimates and rendered target-world evidence.
-- Add a detailed Grok art-direction workflow that converts concept variants into dimensioned layers, routes, anchors, materials, collision roles, tester-world iterations, and measurable acceptance tests.
-- Preserve the product boundary: AIONSTRUCT remains Bedrock-specific, while IronStruct currently provides Unreal authoring and qualification guidance rather than an automatic exporter or runtime proof.
+- Move IronStruct into its own public MIT-licensed repository and marketplace at `EXO-Robotics/ironstruct-ue-builder`.
+- Keep the AIONSTRUCT repository, marketplace, plugin, skill, compiler, and validation workflow Bedrock-specific.
 
 ## 0.3.0 - 2026-08-18
 
