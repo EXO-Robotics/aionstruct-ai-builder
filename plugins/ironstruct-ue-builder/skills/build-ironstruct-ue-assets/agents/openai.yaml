@@ -1,4 +1,0 @@
-interface:
-  display_name: "IronStruct UE Builder"
-  short_description: "Plan and qualify semantic Unreal structures"
-  default_prompt: "Use $build-ironstruct-ue-assets to turn an art reference into a semantic Unreal structure and qualify it safely in a tester world."

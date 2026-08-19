@@ -24,18 +24,7 @@ The repository includes the multi-level **Wayfarer's Hearth House** as an editab
 
 ## IronStruct for Unreal Engine
 
-IronStruct is a separate plugin and skill under [`plugins/ironstruct-ue-builder`](plugins/ironstruct-ue-builder). It applies semantic structure planning and evidence-gated iteration to Unreal Engine without changing AIONSTRUCT's Bedrock schemas, compiler, package, or skill.
-
-IronStruct covers:
-
-- converting Grok concept artwork into dimensioned, layered, testable build data;
-- tester-world iteration before production-map promotion;
-- Blender-to-Unreal coordinate, pivot, marker, and UCX collision pitfalls;
-- guarded MCP mutation, independent saved readback, PIE lifecycle polling, ledgers, and map/save immutability;
-- global-light inventory, locked exposure, zone-based analytical lux fields, fixed-scale heatmaps, and paired editor/PIE visual review;
-- explicit boundaries between semantic intent, imported assets, runtime audits, and human traversal or gameplay proof.
-
-Read [the IronStruct Unreal Engine, MCP, lighting, and Grok field guide](plugins/ironstruct-ue-builder/skills/build-ironstruct-ue-assets/references/unreal-engine-mcp-and-grok.md). IronStruct currently provides authoring and qualification guidance; it is not yet an automatic Unreal asset exporter.
+IronStruct is maintained independently at [EXO-Robotics/ironstruct-ue-builder](https://github.com/EXO-Robotics/ironstruct-ue-builder). Its Unreal Engine plugin, skill, MCP guidance, lighting heatmaps, collision workflow, and Grok art-direction guide are no longer packaged with AIONSTRUCT.
 
 ## Install in Codex
 
@@ -44,10 +33,11 @@ codex plugin marketplace add EXO-Robotics/aionstruct-ai-builder --ref main
 codex plugin add aionstruct-ai-builder@aionstruct
 ```
 
-Install IronStruct separately from the same marketplace:
+Install IronStruct from its own marketplace:
 
 ```bash
-codex plugin add ironstruct-ue-builder@aionstruct
+codex plugin marketplace add EXO-Robotics/ironstruct-ue-builder --ref main
+codex plugin add ironstruct-ue-builder@ironstruct
 ```
 
 Start a new Codex task, then ask:
@@ -124,7 +114,6 @@ Qualify exact compiled bytes separately in a disposable, digest-pinned Bedrock D
 ```bash
 python3 plugins/aionstruct-ai-builder/scripts/self_test.py
 python3 plugins/aionstruct-ai-builder/scripts/package_plugin.py
-python3 plugins/ironstruct-ue-builder/scripts/package_plugin.py
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for validation expectations.
