@@ -19,15 +19,14 @@ A Codex plugin and standalone offline toolkit for AI-assisted Minecraft Bedrock 
 - Reopens and compares every compiled voxel with an independent NBT reader.
 - Preserves explicit air separately from structure void.
 - Keeps static, BDS, client, gameplay, world-generation, and console evidence separate.
-- Includes a field guide for translating semantic plans into Unreal qualification work: UE MCP safety, GLB/FBX transforms, UCX collision, fixed-scale lighting heatmaps, and Grok-assisted art direction.
 
 The repository includes the multi-level **Wayfarer's Hearth House** as an editable reference project.
 
-## Unreal Engine adaptation field guide
+## IronStruct for Unreal Engine
 
-AIONSTRUCT's deterministic compiler remains Bedrock-specific. The skill now also documents how to carry its semantic rooms, routes, apertures, anchors, layers, lighting zones, and proof discipline into a separate Unreal Engine asset pipeline.
+IronStruct is a separate plugin and skill under [`plugins/ironstruct-ue-builder`](plugins/ironstruct-ue-builder). It applies semantic structure planning and evidence-gated iteration to Unreal Engine without changing AIONSTRUCT's Bedrock schemas, compiler, package, or skill.
 
-The Unreal guide covers:
+IronStruct covers:
 
 - converting Grok concept artwork into dimensioned, layered, testable build data;
 - tester-world iteration before production-map promotion;
@@ -36,13 +35,19 @@ The Unreal guide covers:
 - global-light inventory, locked exposure, zone-based analytical lux fields, fixed-scale heatmaps, and paired editor/PIE visual review;
 - explicit boundaries between semantic intent, imported assets, runtime audits, and human traversal or gameplay proof.
 
-Read [the Unreal Engine, MCP, lighting, and Grok field guide](plugins/aionstruct-ai-builder/skills/build-aionstruct-structures/references/unreal-engine-mcp-and-grok.md). It is workflow guidance, not an Unreal exporter or a claim that `.mcstructure` output is compatible with Unreal.
+Read [the IronStruct Unreal Engine, MCP, lighting, and Grok field guide](plugins/ironstruct-ue-builder/skills/build-ironstruct-ue-assets/references/unreal-engine-mcp-and-grok.md). IronStruct currently provides authoring and qualification guidance; it is not yet an automatic Unreal asset exporter.
 
 ## Install in Codex
 
 ```bash
 codex plugin marketplace add EXO-Robotics/aionstruct-ai-builder --ref main
 codex plugin add aionstruct-ai-builder@aionstruct
+```
+
+Install IronStruct separately from the same marketplace:
+
+```bash
+codex plugin add ironstruct-ue-builder@aionstruct
 ```
 
 Start a new Codex task, then ask:
@@ -119,6 +124,7 @@ Qualify exact compiled bytes separately in a disposable, digest-pinned Bedrock D
 ```bash
 python3 plugins/aionstruct-ai-builder/scripts/self_test.py
 python3 plugins/aionstruct-ai-builder/scripts/package_plugin.py
+python3 plugins/ironstruct-ue-builder/scripts/package_plugin.py
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for validation expectations.

@@ -1,6 +1,6 @@
 ---
 name: build-aionstruct-structures
-description: Plan, design, audit portfolios, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline, or adapt its semantic architecture workflow for Unreal Engine qualification. Use for AI structure development involving semantic rooms, clone detection, exploration-purpose contracts, traversal, supported lighting, engineering views, deterministic .mcstructure output, UE MCP placement evidence, measured lighting heatmaps, or Grok-guided art direction.
+description: Plan, design, audit portfolios, preview, and compile original Minecraft Bedrock structures with the offline AIONSTRUCT JSON pipeline. Use for AI Minecraft development involving semantic rooms, houses, castles, ruins, dungeons, clone detection, exploration-purpose contracts, traversal, supported lighting, explicit-air versus void behavior, deterministic .mcstructure output, or pre-BDS review without Minecraft Editor.
 ---
 
 # Build AIONSTRUCT Structures
@@ -18,7 +18,7 @@ python3 <plugin-root>/scripts/bootstrap_project.py <new-project-directory>
 ```
 
 4. Run `python3 tools/aionstruct.py doctor` in the project. Install `requirements.txt` only when PNG previews are required and the dependency is missing.
-5. Read [workflow.md](references/workflow.md) before authoring. Use [plan-format.md](references/plan-format.md) for new semantic designs. Read [portfolio-audits.md](references/portfolio-audits.md) when producing or reviewing multiple structures. Read [blueprint-format.md](references/blueprint-format.md) when inspecting lowered source or maintaining a legacy Blueprint. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level Bedrock builds. Read [unreal-engine-mcp-and-grok.md](references/unreal-engine-mcp-and-grok.md) when adapting plans to Unreal, operating a UE MCP server, measuring target-world lighting, or using Grok for art direction. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
+5. Read [workflow.md](references/workflow.md) before authoring. Use [plan-format.md](references/plan-format.md) for new semantic designs. Read [portfolio-audits.md](references/portfolio-audits.md) when producing or reviewing multiple structures. Read [blueprint-format.md](references/blueprint-format.md) when inspecting lowered source or maintaining a legacy Blueprint. Read [lighting-and-traversal.md](references/lighting-and-traversal.md) for enclosed or multi-level builds. Read [evidence-and-bds.md](references/evidence-and-bds.md) before making qualification or shipping claims.
 
 ## Authoring loop
 
@@ -56,8 +56,6 @@ python3 tools/aionstruct.py build build/structure.blueprint.json \
 - Treat source-map output as traceability for lowering, not voxel or runtime proof.
 - Detect conflicts in final IR, especially windows versus doors, furniture versus routes, roofs versus upper rooms, and fixtures versus headroom.
 - Preserve source, contract, IR, preview, compile-receipt, and artifact hashes.
-
-For an Unreal target, keep AIONSTRUCT as semantic authoring/static-analysis authority and use a separate import, map, collision, lighting, PIE, and human-review evidence chain. The Bedrock compiler does not emit Unreal assets.
 
 ## Fail closed
 

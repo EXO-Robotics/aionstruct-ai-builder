@@ -2,10 +2,11 @@
 
 ## Unreleased
 
-- Add an optional Unreal Engine adaptation field guide covering semantic-plan translation, Blender/GLB/FBX transforms, UCX collision, guarded MCP mutation and receipts, PIE lifecycle evidence, runtime-proxy duplication, and map/save immutability.
+- Add IronStruct as a separate Unreal-focused plugin and skill, independent from AIONSTRUCT's Bedrock package, schemas, compiler, and skill.
+- Add an IronStruct field guide covering semantic-plan translation, Blender/GLB/FBX transforms, UCX collision, guarded MCP mutation and receipts, PIE lifecycle evidence, runtime-proxy duplication, and map/save immutability.
 - Document fixed-scale, zone-based Unreal lighting heatmaps; global-light and exposure inventory; joint lumen/radius calibration; and the boundary between analytical lux estimates and rendered target-world evidence.
 - Add a detailed Grok art-direction workflow that converts concept variants into dimensioned layers, routes, anchors, materials, collision roles, tester-world iterations, and measurable acceptance tests.
-- Preserve the Bedrock compiler boundary: the UE material is qualification guidance, not an Unreal exporter or runtime proof.
+- Preserve the product boundary: AIONSTRUCT remains Bedrock-specific, while IronStruct currently provides Unreal authoring and qualification guidance rather than an automatic exporter or runtime proof.
 
 ## 0.3.0 - 2026-08-18
 

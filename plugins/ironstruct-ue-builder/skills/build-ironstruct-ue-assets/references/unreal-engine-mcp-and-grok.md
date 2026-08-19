@@ -1,8 +1,8 @@
-# Unreal Engine, MCP, lighting, and Grok field guide
+# IronStruct Unreal Engine, MCP, lighting, and Grok field guide
 
 ## Scope and proof boundary
 
-AIONSTRUCT remains the semantic design and static-analysis authority. Its Bedrock compiler does not emit Unreal assets. For an Unreal target, adapt the same room, route, aperture, anchor, layer, lighting-zone, and purpose contracts into a separate Blender/GLB/FBX and Unreal qualification pipeline.
+IronStruct is a separate Unreal-focused workflow. It borrows the useful idea of semantic structure plans, but it does not use AIONSTRUCT's Bedrock compiler, schemas, package identity, or `.mcstructure` output. IronStruct carries rooms, routes, apertures, anchors, layers, lighting zones, and purpose contracts through a Blender/GLB/FBX and Unreal qualification pipeline.
 
 Keep these claims separate:
 
@@ -17,7 +17,7 @@ Do not promote an asset because its concept image is attractive or because it im
 
 ## Translate the semantic plan for Unreal
 
-Preserve the useful AIONSTRUCT structure rather than exporting anonymous merged geometry:
+Preserve semantic structure rather than exporting anonymous merged geometry:
 
 - stable component IDs for foundations, floors, shells, roof masses, porches, ladders, walkways, doors, windows, and dressing zones;
 - explicit dependencies and exclusions;
@@ -76,7 +76,7 @@ Place new work in an isolated Unreal qualification map first. Use a stable actor
 A productive loop is:
 
 1. Grok reference and variant sheet.
-2. AIONSTRUCT-style plan, layers, and component schedule.
+2. IronStruct plan, layers, and component schedule.
 3. Blender generation and collision authoring.
 4. Unreal import and exact actor readback.
 5. Player-scale editor and PIE captures from fixed cameras.

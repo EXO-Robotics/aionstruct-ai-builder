@@ -1,7 +1,7 @@
 {
   "name": "aionstruct-ai-builder",
   "version": "0.3.0",
-  "description": "Semantic structure planning, portfolio audits, Bedrock compilation, and Unreal Engine qualification guidance.",
+  "description": "Semantic planning, portfolio uniqueness audits, deterministic previews, and offline compilation of original Minecraft Bedrock structures.",
   "author": {
     "name": "EXO-Robotics",
     "url": "https://github.com/EXO-Robotics"
@@ -9,12 +9,12 @@
   "homepage": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
   "repository": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
   "license": "MIT",
-  "keywords": ["minecraft", "bedrock", "unreal-engine", "mcp", "structures", "aionstruct", "ai-development", "mcstructure"],
+  "keywords": ["minecraft", "bedrock", "structures", "aionstruct", "ai-development", "mcstructure"],
   "skills": "./skills/",
   "interface": {
     "displayName": "AIONSTRUCT AI Builder",
     "shortDescription": "Plan, audit, and compile Bedrock structures offline.",
-    "longDescription": "A constraint-first structure studio for AI development. Author semantic Plan v1 components, audit portfolios for architectural clones, enforce purpose contracts, prove traversal and fixture support, render engineering previews, and compile deterministic Bedrock .mcstructure bytes. An optional field guide carries the same semantic and evidence discipline into Unreal Engine MCP, lighting, collision, and Grok art-direction workflows.",
+    "longDescription": "A constraint-first structure studio for AI Minecraft development. Author semantic Plan v1 components, audit portfolios for palette-swapped or rotated architectural clones, enforce purpose contracts, prove traversal and fixture support, render engineering previews, then compile deterministic .mcstructure bytes without Minecraft Editor.",
     "developerName": "EXO-Robotics",
     "websiteURL": "https://github.com/EXO-Robotics/aionstruct-ai-builder",
     "category": "Developer Tools",
@@ -23,8 +23,7 @@
       "Design an original Bedrock house as a semantic Plan and render its engineering board.",
       "Audit this AIONSTRUCT blueprint for traversal and lighting defects.",
       "Compare two designs, then compile the validated Blueprint to deterministic .mcstructure bytes.",
-      "Audit a structure portfolio for repeated topology and missing exploration-purpose contracts.",
-      "Turn this Grok building reference into an Unreal-ready semantic plan, lighting contract, and tester-world qualification checklist."
+      "Audit a structure portfolio for repeated topology and missing exploration-purpose contracts."
     ],
     "brandColor": "#B86B3D",
     "composerIcon": "./assets/icon.svg",
